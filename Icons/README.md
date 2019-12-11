@@ -1,6 +1,7 @@
 # Icons
 
-> ![mdsho_logo_s](mdsho_logo_s.png) mdsho_logo_s 
+![mdsho_logo_s](mdsho_logo_s.png) mdsho_logo_s 
+
 ![mdsho_logo_o](mdsho_logo_o.png) mdsho_logo_o 
 ![plus](plus.png) plus 
 ![close](close.png) close 
