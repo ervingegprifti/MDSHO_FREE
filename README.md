@@ -1,2 +1,2 @@
-# mdsho
+# MDSHO
 Multi Desktop Shortcut Organizer
