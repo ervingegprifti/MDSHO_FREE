@@ -1,5 +1,5 @@
 # Icons
 ### Icons were created using [gravit.io](https://gravit.io/)
 
-- ![copy](copy-o.png) copy-o 
-- ![copy](copy-s.png) copy-s 
+- ![copy](copy_o.png) copy_o 
+- ![copy](copy_s.png) copy_s 
