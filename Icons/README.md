@@ -7,4 +7,4 @@
 ![copy_s](copy_s.png) copy_s  
 ![copy_o](copy_o.png) copy_o  
 
-### Icons were created using [gravit.io](https://gravit.io/)
+##### Icons were created using [gravit.io](https://gravit.io/)
