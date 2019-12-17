@@ -1,9 +1,25 @@
 ﻿<Application x:Class="MDSHO.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:clr="clr-namespace:System;assembly=System.Runtime"
              xmlns:local="clr-namespace:MDSHO"
+             xmlns:converters="clr-namespace:MDSHO.ViewModels.Converters"
              StartupUri="MainWindow.xaml">
+
+    <!--http://www.wpftutorial.net/MergedDictionaryPerformance.html-->
+    <!--https://stackoverflow.com/questions/6693320/mergeddictionaries-and-resource-lookup-->
     <Application.Resources>
-         
+
+                    
+        <!-- Font -->
+        <FontFamily x:Key="mdshofont">pack://application:,,,/Assets/Fonts/#mdshofont</FontFamily>
+        <clr:String x:Key="times">&#xe900;</clr:String>    
+                    
+        <converters:SolidColorBrushToColor x:Key="SolidColorBrushToColor" />
+
+
+     
     </Application.Resources>
+    
+    
 </Application>

@@ -23,6 +23,8 @@ namespace MDSHO
         public MainWindow()
         {
             InitializeComponent();
+
+            this.WindowState = WindowState.Minimized;
         }
     }
 }
