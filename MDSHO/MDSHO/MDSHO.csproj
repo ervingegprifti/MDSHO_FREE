@@ -5,18 +5,64 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <ApplicationIcon>Resources\logo_white_32x32.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Fonts\mdshofont.ttf" />
+    <None Remove="Assets\Fonts\APFont.ttf" />
+    <None Remove="Assets\Images\info_o.png" />
+    <None Remove="Assets\Images\info_s.png" />
+    <None Remove="Assets\Images\logo_black_16x16.ico" />
+    <None Remove="Assets\Images\logo_black_16x16.png" />
+    <None Remove="Assets\Images\logo_black_16x16.svg" />
+    <None Remove="Assets\Images\logo_black_32x32.ico" />
+    <None Remove="Assets\Images\logo_black_32x32.png" />
+    <None Remove="Assets\Images\logo_black_32x32.svg" />
+    <None Remove="Assets\Images\logo_white_16x16.ico" />
+    <None Remove="Assets\Images\logo_white_16x16.png" />
+    <None Remove="Assets\Images\logo_white_16x16.svg" />
+    <None Remove="Assets\Images\logo_white_32x32.ico" />
+    <None Remove="Assets\Images\logo_white_32x32.png" />
+    <None Remove="Assets\Images\logo_white_32x32.svg" />
+    <None Remove="Assets\Images\warning_o.png" />
+    <None Remove="Assets\Images\warning_s.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\" />
+    <Resource Include="Assets\Fonts\APFont.ttf" />
+    <Resource Include="Assets\Images\info_o.png" />
+    <Resource Include="Assets\Images\info_s.png" />
+    <Resource Include="Assets\Images\logo_black_16x16.ico" />
+    <Resource Include="Assets\Images\logo_black_16x16.png" />
+    <Resource Include="Assets\Images\logo_black_16x16.svg" />
+    <Resource Include="Assets\Images\logo_black_32x32.ico" />
+    <Resource Include="Assets\Images\logo_black_32x32.png" />
+    <Resource Include="Assets\Images\logo_black_32x32.svg" />
+    <Resource Include="Assets\Images\logo_white_16x16.ico" />
+    <Resource Include="Assets\Images\logo_white_16x16.png" />
+    <Resource Include="Assets\Images\logo_white_16x16.svg" />
+    <Resource Include="Assets\Images\logo_white_32x32.ico" />
+    <Resource Include="Assets\Images\logo_white_32x32.png" />
+    <Resource Include="Assets\Images\logo_white_32x32.svg" />
+    <Resource Include="Assets\Images\warning_o.png" />
+    <Resource Include="Assets\Images\warning_s.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Fonts\mdshofont.ttf" />
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

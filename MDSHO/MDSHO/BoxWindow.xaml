@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDSHO"
-        
         mc:Ignorable="d"
         ShowInTaskbar="True"
         WindowStyle="None"
@@ -20,7 +19,15 @@
     <!--Resources-->
     <Window.Resources>
 
-        <Style x:Key="StyleHeaderButton" TargetType="{x:Type Button}">
+        <Style x:Key="StyleMenuItemFontIcon" TargetType="{x:Type TextBlock}">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="FontFamily" Value="{StaticResource APFont}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#424242"/>
+        </Style>
+
+        <Style x:Key="StyleTitleButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{x:Null}"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="Foreground" Value="{x:Null}"/>
@@ -28,7 +35,7 @@
             <Setter Property="Width" Value="32"/>
             <Setter Property="Height" Value="32"/>
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontFamily" Value="{StaticResource mdshofont}"/>
+            <Setter Property="FontFamily" Value="{StaticResource APFont}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -56,7 +63,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <!-- Header -->
+            <!-- Title -->
             <RowDefinition Height="Auto"/>
             <!-- Body -->
             <RowDefinition Height="*"/>
@@ -66,16 +73,21 @@
 
 
         <!--Header-->
-        <Grid x:Name="gridHeader" Height="32">
+        <Grid x:Name="gridTitle" Height="32">
             
             <Grid.Background>
                 <!--<SolidColorBrush Color="{Binding InfoVM.TitleBackgroundSolidColorBrush.Color}" Opacity="{Binding InfoVM.TitleBackgroundOpacity}" />-->
                 <SolidColorBrush Color="OrangeRed" Opacity="1.0" />
             </Grid.Background>
 
-            <!--The context menu of the header-->
+            <!--The context menu of the title-->
             <Grid.ContextMenu>
                 <ContextMenu>
+                    <MenuItem Header="About MDSHO" Command="{Binding ShowAboutWindowCommand}">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource info_s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <Separator/>
                     <MenuItem Header="Exit application" Command="{Binding ExitApplicationCommand}" />
                 </ContextMenu>
@@ -97,10 +109,10 @@
 
             <Button 
                 Grid.Column="4" 
-                Style="{StaticResource StyleHeaderButton}"
+                Style="{StaticResource StyleTitleButton}"
                 Foreground="Blue"
                 ToolTip="Close clone"
-                Content="{StaticResource times}"/>
+                Content="{StaticResource times_o}"/>
 
 
             <!--<Button 

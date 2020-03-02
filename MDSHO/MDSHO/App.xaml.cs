@@ -1,4 +1,5 @@
-﻿using MDSHO.ViewModels;
+﻿using MDSHO.Helpers;
+using MDSHO.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,7 +52,7 @@ namespace MDSHO
                 CreateContextMenu();
 
 
-
+                ShowAboutWindow();
 
 
                 // TODO temp delete later
@@ -64,10 +65,9 @@ namespace MDSHO
                 boxWindow.Show();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO
-                // Error.ShowDialog(ex);
+                Error.Show(ex);
             }
         }
 
@@ -84,8 +84,7 @@ namespace MDSHO
             }
             catch (Exception ex)
             {
-                // TODO
-                // Error.ShowDialog(ex);
+                Error.Show(ex);
             }
         }
 
@@ -102,8 +101,7 @@ namespace MDSHO
             }
             catch (Exception ex)
             {
-                // TODO
-                // Error.ShowDialog(ex);
+                Error.Show(ex);
             }
         }
 
@@ -158,8 +156,21 @@ namespace MDSHO
             }
             catch (Exception ex)
             {
-                // TODO
-                // Error.ShowDialog(ex);
+                Error.Show(ex);
+            }
+        }
+
+
+        public void ShowAboutWindow()
+        {
+            try
+            {
+                AboutWindow aboutWindow = new AboutWindow();
+                aboutWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Error.Show(ex);
             }
         }
 

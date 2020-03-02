@@ -1,4 +1,5 @@
-﻿using MDSHO.ViewModels.Commands;
+﻿using MDSHO.Helpers;
+using MDSHO.ViewModels.Commands;
 using System;
 using System.Windows;
 
@@ -15,6 +16,8 @@ namespace MDSHO.ViewModels
         }
         public InfoViewModel InfoViewModel { get; set; }
         public RelayCommand ExitApplicationCommand { get; }
+        public RelayCommand ShowAboutWindowCommand { get; }
+
 
         public BoxViewModel(InfoViewModel infoViewModel)
         {
@@ -22,11 +25,11 @@ namespace MDSHO.ViewModels
             {
                 InfoViewModel = infoViewModel;
                 ExitApplicationCommand = new RelayCommand(ExitApplication);
+                ShowAboutWindowCommand = new RelayCommand(ShowAboutWindow);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO
-                // Error.ShowDialog(ex);
+                Error.Show(ex);
             }
         }
 
@@ -39,8 +42,18 @@ namespace MDSHO.ViewModels
             }
             catch (Exception ex)
             {
-                // TODO
-                // Error.ShowDialog(ex);
+                Error.Show(ex);
+            }
+        }
+        private void ShowAboutWindow(object parameter)
+        {
+            try
+            {
+                AppContext.ShowAboutWindow();
+            }
+            catch (Exception ex)
+            {
+                Error.Show(ex);
             }
         }
 

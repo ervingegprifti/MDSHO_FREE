@@ -20,6 +20,11 @@ namespace MDSHO.ViewModels
         {
             ((App)Application.Current).ExitApplication(confirm);
         }
+        public void ShowAboutWindow()
+        {
+            // No need to save settings here.
+            ((App)Application.Current).ShowAboutWindow();
+        }
 
     }
 }

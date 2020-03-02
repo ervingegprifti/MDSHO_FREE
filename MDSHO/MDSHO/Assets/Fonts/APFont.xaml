@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:clr="clr-namespace:System;assembly=System.Runtime">
+
+    <FontFamily x:Key="APFont">pack://application:,,,/Assets/Fonts/#APFont</FontFamily>
+    
+    <clr:String x:Key="times_o">&#xe900;</clr:String>
+    <clr:String x:Key="times_s">&#xe901;</clr:String>
+    <clr:String x:Key="info_o">&#xe902;</clr:String>
+    <clr:String x:Key="info_s">&#xe903;</clr:String>
+    <clr:String x:Key="mdsho_o">&#xe904;</clr:String>
+    <clr:String x:Key="mdsho_s">&#xe905;</clr:String>
+    <clr:String x:Key="copy_o">&#xe906;</clr:String>
+    <clr:String x:Key="copy_s">&#xe907;</clr:String>
+    <clr:String x:Key="warning_o">&#xe908;</clr:String>
+    <clr:String x:Key="warning_s">&#xe909;</clr:String>
+    <clr:String x:Key="plus_o">&#xe90a;</clr:String>
+    <clr:String x:Key="plus_s">&#xe90b;</clr:String>
+    <clr:String x:Key="dock_left_o">&#xe90c;</clr:String>
+    <clr:String x:Key="dock_left_s">&#xe90d;</clr:String>
+    <clr:String x:Key="dock_right_o">&#xe90e;</clr:String>
+    <clr:String x:Key="dock_right_s">&#xe90f;</clr:String>
+    <clr:String x:Key="rename_o">&#xe910;</clr:String>
+    <clr:String x:Key="rename_s">&#xe911;</clr:String>
+    <clr:String x:Key="clone_o">&#xe912;</clr:String>
+    <clr:String x:Key="clone_s">&#xe913;</clr:String>
+    <clr:String x:Key="clones_o">&#xe914;</clr:String>
+    <clr:String x:Key="clones_s">&#xe915;</clr:String>
+    <clr:String x:Key="split_in_two_o">&#xe916;</clr:String>
+    <clr:String x:Key="split_in_two_s">&#xe917;</clr:String>
+    <clr:String x:Key="split_in_four_o">&#xe918;</clr:String>
+    <clr:String x:Key="split_in_four_s">&#xe919;</clr:String>
+    <clr:String x:Key="cut_o">&#xe91a;</clr:String>
+    <clr:String x:Key="cut_s">&#xe91b;</clr:String>
+    <clr:String x:Key="recycle_bin_o">&#xe91c;</clr:String>
+    <clr:String x:Key="recycle_bin_s">&#xe91d;</clr:String>
+    <clr:String x:Key="desktop_o">&#xe91e;</clr:String>
+    <clr:String x:Key="desktop_s">&#xe91f;</clr:String>
+    <clr:String x:Key="brush_o">&#xe920;</clr:String>
+    <clr:String x:Key="brush_s">&#xe921;</clr:String>
+    <clr:String x:Key="settings_o">&#xe922;</clr:String>
+    <clr:String x:Key="settings_s">&#xe923;</clr:String>
+    <clr:String x:Key="control_panel_o">&#xe924;</clr:String>
+    <clr:String x:Key="control_panel_s">&#xe925;</clr:String>
+    <clr:String x:Key="minus_o">&#xe926;</clr:String>
+    <clr:String x:Key="minus_s">&#xe927;</clr:String>
+    <clr:String x:Key="send_o">&#xe928;</clr:String>
+    <clr:String x:Key="send_s">&#xe929;</clr:String>
+    <clr:String x:Key="sort_asc_o">&#xe92a;</clr:String>
+    <clr:String x:Key="sort_asc_s">&#xe92b;</clr:String>
+    <clr:String x:Key="sort_desc_o">&#xe92c;</clr:String>
+    <clr:String x:Key="sort_desc_s">&#xe92d;</clr:String>
+    <clr:String x:Key="theme_o">&#xe92e;</clr:String>
+    <clr:String x:Key="theme_s">&#xe92f;</clr:String>
+    <clr:String x:Key="paste_o">&#xe930;</clr:String>
+    <clr:String x:Key="paste_s">&#xe930;</clr:String>
+    <clr:String x:Key="key_o">&#xe931;</clr:String>
+    <clr:String x:Key="key_s">&#xe932;</clr:String>
+
+</ResourceDictionary>
