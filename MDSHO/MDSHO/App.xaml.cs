@@ -32,11 +32,21 @@ namespace MDSHO
 
             try
             {
-                if (IsApplicationAlreadyRunning())
+                // Make sure the same application is not running.
+                string processName = Process.GetCurrentProcess().ProcessName;
+                Process[] processes = Process.GetProcessesByName(processName);
+                if (processes.Length > 1)
                 {
-                    MessageBox.Show("QuickShortcuts is already running.\nPlease check the taskbar.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Application.Current.Shutdown();
+                    MessageBox.Show($"{processName} is already running.\nPlease check the taskbar.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Current.Shutdown();
                 }
+
+
+
+
+
+
+
 
                 //StartLife();
 
@@ -107,23 +117,7 @@ namespace MDSHO
 
 
 
-        /// <summary>
-        /// Check and see if the application ia running.
-        /// </summary>
-        /// <returns>Return true if the application is running otherwise false.</returns>
-        private bool IsApplicationAlreadyRunning()
-        {
-            string processName = Process.GetCurrentProcess().ProcessName;
-            Process[] processes = Process.GetProcessesByName(processName);
-            if (processes.Length > 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+
 
 
 
