@@ -18,14 +18,6 @@ namespace MDSHO
     /// </summary>
     public partial class BoxWindow : Window
     {
-        private BoxViewModel BoxContext
-        {
-            get
-            {
-                return (BoxViewModel)DataContext;
-            }
-        }
-
         public BoxWindow(BoxViewModel boxViewModel)
         {
             InitializeComponent();
@@ -40,9 +32,9 @@ namespace MDSHO
             try
             {
                 Rectangle rectangle = (Rectangle)sender;
-                if (DataContext != null)
+                if (((BoxViewModel)DataContext) != null)
                 {
-                    BoxContext.InfoViewModel.WindowBackgroundOpacity = rectangle.Fill.Opacity;
+                   ((BoxViewModel)DataContext).InfoViewModel.WindowBackgroundOpacity = rectangle.Fill.Opacity;
                 }
             }
             catch (Exception)

@@ -22,9 +22,9 @@ namespace MDSHO
     /// </summary>
     public partial class App : Application
     {
-        public AppViewModel AppContext { get; set; } = new AppViewModel();
-        private Forms.NotifyIcon _notifyIcon;
-        private bool _isExit;
+        public AppViewModel AppViewModel { get; set; } = new AppViewModel();
+        private Forms.NotifyIcon notifyIcon = new Forms.NotifyIcon();
+        private bool mustExit;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -35,17 +35,12 @@ namespace MDSHO
                 // Make sure the same application is not running.
                 string processName = Process.GetCurrentProcess().ProcessName;
                 Process[] processes = Process.GetProcessesByName(processName);
+                // If the application is already running do not start another one.
                 if (processes.Length > 1)
                 {
                     MessageBox.Show($"{processName} is already running.\nPlease check the taskbar.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                     Current.Shutdown();
                 }
-
-
-
-
-
-
 
 
                 //StartLife();
@@ -54,15 +49,19 @@ namespace MDSHO
                 MainWindow.Closing += MainWindow_Closing;
                 Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
-                _notifyIcon = new Forms.NotifyIcon();
-                //_notifyIcon.DoubleClick += (s, args) => ShowAboutWindow();
-                //_notifyIcon.Icon = QuickShortcuts.Properties.Resources.quickshortcuts_neg_nobg_o;
-                _notifyIcon.Visible = true;
+                // notifyIcon.DoubleClick += (s, args) => ShowAboutWindow();
+                notifyIcon.Icon = MDSHO.Properties.Resources.logo_white_16x16;
+                notifyIcon.Visible = true;
 
-                CreateContextMenu();
+                // Create the context menu strip
+                notifyIcon.ContextMenuStrip = new Forms.ContextMenuStrip();
+                //_notifyIcon.ContextMenuStrip.Items.Add("New window", Helper.GetImageFromImages("plus-o.png")).Click += (s, e) => NewWindow();
+                //_notifyIcon.ContextMenuStrip.Items.Add("Restore shortcuts...", Helper.GetImageFromImages("database-o.png")).Click += (s, e) => ShowRestoreWindow();
+                //_notifyIcon.ContextMenuStrip.Items.Add("About QuickShortcuts", Helper.GetImageFromImages("info-o.png")).Click += (s, e) => ShowAboutWindow();
+                notifyIcon.ContextMenuStrip.Items.Add("Exit application").Click += (s, e) => ExitApplication(confirm: false);
 
 
-                ShowAboutWindow();
+
 
 
                 // TODO temp delete later
@@ -70,7 +69,7 @@ namespace MDSHO
                 double windowBackgroundOpacity = 1D;
                 InfoViewModel infoViewModel = new InfoViewModel(windowBackground, windowBackgroundOpacity);
                 BoxViewModel boxViewModel = new BoxViewModel(infoViewModel);
-                AppContext.BoxViewModels.Add(boxViewModel);
+                AppViewModel.BoxViewModels.Add(boxViewModel);
                 BoxWindow boxWindow = new BoxWindow(boxViewModel);
                 boxWindow.Show();
 
@@ -82,36 +81,15 @@ namespace MDSHO
         }
 
 
-        private void CreateContextMenu()
-        {
-            try
-            {
-                _notifyIcon.ContextMenuStrip = new Forms.ContextMenuStrip();
-                //_notifyIcon.ContextMenuStrip.Items.Add("New window", Helper.GetImageFromImages("plus-o.png")).Click += (s, e) => NewWindow();
-                //_notifyIcon.ContextMenuStrip.Items.Add("Restore shortcuts...", Helper.GetImageFromImages("database-o.png")).Click += (s, e) => ShowRestoreWindow();
-                //_notifyIcon.ContextMenuStrip.Items.Add("About QuickShortcuts", Helper.GetImageFromImages("info-o.png")).Click += (s, e) => ShowAboutWindow();
-                _notifyIcon.ContextMenuStrip.Items.Add("Exit application").Click += (s, e) => ExitApplication(false);
-            }
-            catch (Exception ex)
-            {
-                Error.Show(ex);
-            }
-        }
+
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            try
+            if (!mustExit)
             {
-                if (!_isExit)
-                {
-                    e.Cancel = true;
-                    // A hidden window can be shown again, a closed one not.
-                    MainWindow.Hide();
-                }
-            }
-            catch (Exception ex)
-            {
-                Error.Show(ex);
+                e.Cancel = true;
+                // A hidden window can be shown again, a closed one not.
+                MainWindow.Hide();
             }
         }
 
@@ -127,46 +105,28 @@ namespace MDSHO
         /// <param name="confirm">If false then do not disturb the user with confirmation questions.</param>
         public void ExitApplication(bool confirm)
         {
-            try
+            if (confirm)
             {
-                if (confirm)
+                MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to exit application?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to exit application?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (messageBoxResult == MessageBoxResult.Yes)
-                    {
-                        _notifyIcon.Dispose();
-                        _notifyIcon = null;
-                        _isExit = true;
-                        MainWindow.Close();
-                    }
-                }
-                else
-                {
-                        _notifyIcon.Dispose();
-                        _notifyIcon = null;
-                        _isExit = true;
-                        MainWindow.Close();
+                    notifyIcon.Dispose();
+                    notifyIcon = null;
+                    mustExit = true;
+                    MainWindow.Close();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Error.Show(ex);
+                    notifyIcon.Dispose();
+                    notifyIcon = null;
+                    mustExit = true;
+                    MainWindow.Close();
             }
         }
 
 
-        public void ShowAboutWindow()
-        {
-            try
-            {
-                AboutWindow aboutWindow = new AboutWindow();
-                aboutWindow.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                Error.Show(ex);
-            }
-        }
+
 
 
 

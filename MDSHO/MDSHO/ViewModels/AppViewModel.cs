@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MDSHO.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -18,12 +19,28 @@ namespace MDSHO.ViewModels
 
         public void ExitApplication(bool confirm)
         {
-            ((App)Application.Current).ExitApplication(confirm);
+            try
+            {
+                ((App)Application.Current).ExitApplication(confirm);
+            }
+            catch (Exception ex)
+            {
+                Error.Show(ex);
+            }
         }
+
+
         public void ShowAboutWindow()
         {
-            // No need to save settings here.
-            ((App)Application.Current).ShowAboutWindow();
+            try
+            {
+                AboutWindow aboutWindow = new AboutWindow();
+                aboutWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Error.Show(ex);
+            }
         }
 
     }

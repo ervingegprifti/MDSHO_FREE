@@ -5,8 +5,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <FileVersion>1.0.0.2</FileVersion>
+    <AssemblyVersion>1.0.0.3</AssemblyVersion>
+    <FileVersion>1.0.0.3</FileVersion>
     <ApplicationIcon>Resources\logo_white_32x32.ico</ApplicationIcon>
   </PropertyGroup>
 
@@ -31,7 +31,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Fonts\APFont.ttf" />
+    <Resource Include="Assets\Fonts\APFont.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\info_o.png" />
     <Resource Include="Assets\Images\info_s.png" />
     <Resource Include="Assets\Images\logo_black_16x16.ico" />

@@ -11,9 +11,9 @@
         WindowState="Normal"
         Background="Transparent"
         Focusable="False"
-        Title="BoxWindow" 
-        Height="450" 
-        Width="300">
+        Title="BoxWindow"
+        Height="450"
+        Width="400">
 
 
     <!--Resources-->
@@ -74,7 +74,7 @@
 
         <!--Header-->
         <Grid x:Name="gridTitle" Height="32">
-            
+
             <Grid.Background>
                 <!--<SolidColorBrush Color="{Binding InfoVM.TitleBackgroundSolidColorBrush.Color}" Opacity="{Binding InfoVM.TitleBackgroundOpacity}" />-->
                 <SolidColorBrush Color="OrangeRed" Opacity="1.0" />
@@ -85,7 +85,7 @@
                 <ContextMenu>
                     <MenuItem Header="About MDSHO" Command="{Binding ShowAboutWindowCommand}">
                         <MenuItem.Icon>
-                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource info_s}"/>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource apfont-info-o}"/>
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
@@ -103,27 +103,27 @@
 
 
 
-                
-  
-            
 
-            <Button 
-                Grid.Column="4" 
+
+
+
+            <Button
+                Grid.Column="4"
                 Style="{StaticResource StyleTitleButton}"
                 Foreground="Blue"
                 ToolTip="Close clone"
-                Content="{StaticResource times_o}"/>
+                Content="{StaticResource apfont-times-o}"/>
 
 
-            <!--<Button 
-                Grid.Column="4" 
+            <!--<Button
+                Grid.Column="4"
                 Command="{Binding CloseWindowCommand}"
                 Style="{StaticResource StyleTopRightButton}"
                 Foreground="{Binding InfoVM.TitleTextSolidColorBrush}"
                 ToolTip="Close window"
                 Content="{StaticResource close-o}"
                 Visibility="{Binding CloseWindowVisibility}"/>-->
-            
+
         </Grid>
 
 
@@ -132,15 +132,15 @@
         <Grid x:Name="gridBody" Grid.Row="1" Margin="0,0,0,0">
             <Grid.Background>
                 <SolidColorBrush
-                    Color="{Binding InfoViewModel.WindowBackground.Color}" 
+                    Color="{Binding InfoViewModel.WindowBackground.Color}"
                     Opacity="{Binding InfoViewModel.WindowBackgroundOpacity}" />
             </Grid.Background>
         </Grid>
 
-        
+
         <!-- Footer -->
         <Grid x:Name="gridFooter" Grid.Row="2" Height="16">
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -210,8 +210,8 @@
                     <SolidColorBrush Opacity="0.01" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            
+
         </Grid>
 
     </Grid>
-</Window> 
+</Window>

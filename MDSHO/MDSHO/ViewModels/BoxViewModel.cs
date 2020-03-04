@@ -7,13 +7,7 @@ namespace MDSHO.ViewModels
 {
     public class BoxViewModel : BaseViewModel
     {
-        public AppViewModel AppContext 
-        { 
-            get
-            {
-                return ((App)Application.Current).AppContext;
-            }
-        }
+        private AppViewModel appViewModel;
         public InfoViewModel InfoViewModel { get; set; }
         public RelayCommand ExitApplicationCommand { get; }
         public RelayCommand ShowAboutWindowCommand { get; }
@@ -23,6 +17,7 @@ namespace MDSHO.ViewModels
         {
             try
             {
+                appViewModel = ((App)Application.Current).AppViewModel;
                 InfoViewModel = infoViewModel;
                 ExitApplicationCommand = new RelayCommand(ExitApplication);
                 ShowAboutWindowCommand = new RelayCommand(ShowAboutWindow);
@@ -38,7 +33,7 @@ namespace MDSHO.ViewModels
         {
             try
             {
-                AppContext.ExitApplication(true);
+                appViewModel.ExitApplication(true);
             }
             catch (Exception ex)
             {
@@ -49,7 +44,7 @@ namespace MDSHO.ViewModels
         {
             try
             {
-                AppContext.ShowAboutWindow();
+                appViewModel.ShowAboutWindow();
             }
             catch (Exception ex)
             {

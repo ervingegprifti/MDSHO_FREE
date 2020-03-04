@@ -34,9 +34,7 @@ namespace MDSHO.ViewModels
         }
 
 
-        public InfoViewModel(
-            SolidColorBrush windowBackground,
-            double windowBackgroundOpacity)
+        public InfoViewModel(SolidColorBrush windowBackground, double windowBackgroundOpacity)
         {
             WindowBackground = windowBackground;
             WindowBackgroundOpacity = windowBackgroundOpacity;
