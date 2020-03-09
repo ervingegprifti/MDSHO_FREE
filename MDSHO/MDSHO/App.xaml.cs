@@ -22,7 +22,7 @@ namespace MDSHO
     /// </summary>
     public partial class App : Application
     {
-        public AppViewModel AppViewModel { get; set; } = new AppViewModel();
+        public AppVM AppVM { get; set; } = new AppVM();
         private Forms.NotifyIcon notifyIcon = new Forms.NotifyIcon();
         private bool mustExit;
 
@@ -65,12 +65,12 @@ namespace MDSHO
 
 
                 // TODO temp delete later
-                SolidColorBrush windowBackground = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString("Green") };
-                double windowBackgroundOpacity = 1D;
-                InfoViewModel infoViewModel = new InfoViewModel(windowBackground, windowBackgroundOpacity);
-                BoxViewModel boxViewModel = new BoxViewModel(infoViewModel);
-                AppViewModel.BoxViewModels.Add(boxViewModel);
-                BoxWindow boxWindow = new BoxWindow(boxViewModel);
+                SolidColorBrush boxBg = new SolidColorBrush { Color = (Color)ColorConverter.ConvertFromString("Green") };
+                double boxBgOpacity = 1D;
+                InfoVM infoVM = new InfoVM(boxBg, boxBgOpacity);
+                BoxVM boxVM = new BoxVM(infoVM);
+                AppVM.BoxVMs.Add(boxVM);
+                BoxWindow boxWindow = new BoxWindow(boxVM);
                 boxWindow.Show();
 
             }

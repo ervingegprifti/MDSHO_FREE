@@ -5,20 +5,20 @@ using System.Windows;
 
 namespace MDSHO.ViewModels
 {
-    public class BoxViewModel : BaseViewModel
+    public class BoxVM : BaseVM
     {
-        private AppViewModel appViewModel;
-        public InfoViewModel InfoViewModel { get; set; }
+        private AppVM appVM;
+        public InfoVM InfoVM { get; set; }
         public RelayCommand ExitApplicationCommand { get; }
         public RelayCommand ShowAboutWindowCommand { get; }
 
 
-        public BoxViewModel(InfoViewModel infoViewModel)
+        public BoxVM(InfoVM infoVM)
         {
             try
             {
-                appViewModel = ((App)Application.Current).AppViewModel;
-                InfoViewModel = infoViewModel;
+                appVM = ((App)Application.Current).AppVM;
+                InfoVM = infoVM;
                 ExitApplicationCommand = new RelayCommand(ExitApplication);
                 ShowAboutWindowCommand = new RelayCommand(ShowAboutWindow);
             }
@@ -33,7 +33,7 @@ namespace MDSHO.ViewModels
         {
             try
             {
-                appViewModel.ExitApplication(true);
+                appVM.ExitApplication(true);
             }
             catch (Exception ex)
             {
@@ -44,7 +44,7 @@ namespace MDSHO.ViewModels
         {
             try
             {
-                appViewModel.ShowAboutWindow();
+                appVM.ShowAboutWindow();
             }
             catch (Exception ex)
             {

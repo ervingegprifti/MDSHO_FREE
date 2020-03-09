@@ -7,11 +7,11 @@ using System.Windows;
 
 namespace MDSHO.ViewModels
 {
-    public class AppViewModel : BaseViewModel
+    public class AppVM : BaseVM
     {
-        public ObservableCollection<BoxViewModel> BoxViewModels { get; set; } = new ObservableCollection<BoxViewModel>();
+        public ObservableCollection<BoxVM> BoxVMs { get; set; } = new ObservableCollection<BoxVM>();
 
-        public AppViewModel()
+        public AppVM()
         {
 
         }

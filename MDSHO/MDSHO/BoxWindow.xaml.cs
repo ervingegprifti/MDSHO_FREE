@@ -18,23 +18,23 @@ namespace MDSHO
     /// </summary>
     public partial class BoxWindow : Window
     {
-        public BoxWindow(BoxViewModel boxViewModel)
+        public BoxWindow(BoxVM boxVM)
         {
             InitializeComponent();
 
-            DataContext = boxViewModel;
+            DataContext = boxVM;
         }
 
 
 
-        private void SetBoxBackgroundOpacity(object sender, MouseButtonEventArgs e)
+        private void SetBoxBgOpacity(object sender, MouseButtonEventArgs e)
         {
             try
             {
                 Rectangle rectangle = (Rectangle)sender;
-                if (((BoxViewModel)DataContext) != null)
+                if (((BoxVM)DataContext) != null)
                 {
-                   ((BoxViewModel)DataContext).InfoViewModel.WindowBackgroundOpacity = rectangle.Fill.Opacity;
+                   ((BoxVM)DataContext).InfoVM.BoxBgOpacity = rectangle.Fill.Opacity;
                 }
             }
             catch (Exception)

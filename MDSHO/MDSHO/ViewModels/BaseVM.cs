@@ -2,7 +2,7 @@
 
 namespace MDSHO.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
