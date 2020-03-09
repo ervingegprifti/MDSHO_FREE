@@ -25,15 +25,7 @@ namespace MDSHO
         {
             InitializeComponent();
 
-            try
-            {
-                string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                LabelVersion.Content = version;
-            }
-            catch (Exception ex)
-            {
-                Error.Show(ex);
-            }
+            LabelVersion.Content = Helper.GetApplicationVersion();
         }
 
         private void HyperlinkWebsite_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -56,7 +48,7 @@ namespace MDSHO
                     FileName = e.Uri.AbsoluteUri,
                     UseShellExecute = true
                 };
-                Process.Start(processStartInfo);  
+                Process.Start(processStartInfo);
             }
             catch (Exception ex)
             {

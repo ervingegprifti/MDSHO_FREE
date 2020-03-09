@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:MDSHO"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="Error" 
-        Width="350"
-        Height="400" 
+        Title="Error"
+        Width="650"
+        Height="550"
         Background="{StaticResource SolidColorBrushErrorYellow}"
-        Icon="/MDSHO;component/Assets/Images/warning_s.png" 
-        ResizeMode="NoResize" 
-        Topmost="True" 
+        Icon="/MDSHO;component/Assets/Images/warning_s.png"
+        ResizeMode="NoResize"
+        Topmost="True"
         WindowStartupLocation="CenterScreen">
 
     <Grid>
-        
+
         <Grid.RowDefinitions>
             <!-- Label error message -->
             <RowDefinition Height="Auto"/>
@@ -24,20 +24,20 @@
             <RowDefinition Height="*"/>
             <!-- Footer -->
             <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>    
-        
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Error message -->
-        <Label Grid.Row="0" Grid.Column="0" Margin="17,20,20,0" Foreground="DimGray" Content="Error message"/>
-        
+        <Label Grid.Row="0" Grid.Column="0" Margin="37,40,40,0" Foreground="DimGray" Content="Error message"/>
+
         <!-- Value error message -->
-        <TextBox 
+        <TextBox
             Grid.Row="1" Grid.Column="0" x:Name="TextBoxErrorMessage"
             Background="{StaticResource SolidColorBrushErrorYellow}"
-            Margin="20,0,20,20"
+            Margin="40,0,40,40"
             BorderBrush="LightGray"
             BorderThickness="1"
             Padding="5"
@@ -48,23 +48,24 @@
             FontSize="10">
             <TextBox.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarHeightKey}">10</sys:Double>
-                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>                
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
             </TextBox.Resources>
 
         </TextBox>
-        
+
         <!-- Footer -->
         <StackPanel Grid.Row="2" Grid.Column="0" Background="{StaticResource SolidColorBrushMilk}" Orientation="Vertical">
-            
-            <Button x:Name="ButtonDismiss" 
+
+            <Button x:Name="ButtonDismiss"
                     Click="ButtonDismiss_Click"
                     Style="{StaticResource StyleDismissButton}"
                     HorizontalAlignment="Right"
-                    VerticalContentAlignment="Center"/>         
-            
+                    VerticalContentAlignment="Center"
+                    Margin="40,30,40,30"/>
+
         </StackPanel>
 
-       
+
 
 
     </Grid>

@@ -29,11 +29,10 @@ namespace MDSHO
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            SetupGlobalExceptionHandling();
 
-            try
-            {
-                // Make sure the same application is not running.
-                string processName = Process.GetCurrentProcess().ProcessName;
+            // Make sure the same application is not running.
+            string processName = Process.GetCurrentProcess().ProcessName;
                 Process[] processes = Process.GetProcessesByName(processName);
                 // If the application is already running do not start another one.
                 if (processes.Length > 1)
@@ -73,12 +72,46 @@ namespace MDSHO
                 BoxWindow boxWindow = new BoxWindow(boxVM);
                 boxWindow.Show();
 
-            }
-            catch (Exception ex)
-            {
-                Error.Show(ex);
-            }
         }
+
+
+
+        /// <summary>
+        /// Used to globally catch unhalted exceptions. <br />
+        /// https://stackoverflow.com/questions/793100/globally-catch-exceptions-in-a-wpf-application <br />
+        /// https://stackoverflow.com/questions/1472498/wpf-global-exception-handler/1472562#1472562
+        /// </summary>
+        private void SetupGlobalExceptionHandling()
+        {
+            // AppDomain.CurrentDomain.UnhandledException. From all threads in the AppDomain.
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                Error.Show((Exception)e.ExceptionObject, "AppDomain.CurrentDomain.UnhandledException");
+            };
+
+            // Application.Current.Dispatcher.UnhandledException. From a single specific UI dispatcher thread.
+            Dispatcher.UnhandledException += (s, e) =>
+            {
+                Error.Show(e.Exception, "Application.Current.Dispatcher.UnhandledException");
+                e.Handled = true;
+            };
+
+            // Application.Current.DispatcherUnhandledException. From the main UI dispatcher thread in your WPF application.
+            DispatcherUnhandledException += (s, e) =>
+            {
+                Error.Show(e.Exception, "Application.Current.DispatcherUnhandledException");
+                e.Handled = true;
+            };
+
+            // TaskScheduler.UnobservedTaskException. From within each AppDomain that uses a task scheduler for asynchronous operations.
+            TaskScheduler.UnobservedTaskException += (s, e) =>
+            {
+                Error.Show(e.Exception, "TaskScheduler.UnobservedTaskException");
+                e.SetObserved();
+            };
+        }
+
+
 
 
 

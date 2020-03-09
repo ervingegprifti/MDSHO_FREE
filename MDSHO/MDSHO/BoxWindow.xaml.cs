@@ -27,21 +27,43 @@ namespace MDSHO
 
 
 
-        private void SetBoxBgOpacity(object sender, MouseButtonEventArgs e)
+
+        #region Functions used to change the background color and opacity from clicking on the bottom buttons of a box.
+
+        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            try
+            if(e.LeftButton == MouseButtonState.Pressed)
             {
-                Rectangle rectangle = (Rectangle)sender;
-                if (((BoxVM)DataContext) != null)
-                {
-                   ((BoxVM)DataContext).InfoVM.BoxBgOpacity = rectangle.Fill.Opacity;
-                }
+                SetBoxBgOpacity(sender);
             }
-            catch (Exception)
+            if (e.RightButton == MouseButtonState.Pressed)
             {
-                // TODO
+                SetBoxBgOpacity(sender);
             }
         }
+        private void Rectangle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                SetBoxBgOpacity(sender);
+            }
+            if(e.RightButton == MouseButtonState.Pressed)
+            {
+                SetBoxBgOpacity(sender);
+            }
+        }
+        private void SetBoxBgOpacity(object sender)
+        {
+            BoxVM boxVM = (BoxVM)DataContext;
+            if (boxVM != null && sender is Rectangle)
+            {
+                Rectangle rectangle = (Rectangle)sender;
+                boxVM.InfoVM.BoxBgOpacity = rectangle.Fill.Opacity;
+            }
+        }
+
+        #endregion
+
 
 
 

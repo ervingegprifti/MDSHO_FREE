@@ -155,57 +155,57 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Rectangle Grid.Column="0" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="0" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="1.0" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="1" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="1" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.9" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="2" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="2" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.8" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="3" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="3" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.7" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="4" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="4" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.6" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="5" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="5" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.5" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="6" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="6" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.4" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="7" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="7" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.3" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="8" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="8" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.2" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="9" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="9" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.1" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Grid.Column="10" MouseLeftButtonDown="SetBoxBgOpacity">
+            <Rectangle Grid.Column="10" MouseDown="Rectangle_MouseDown" MouseMove="Rectangle_MouseMove">
                 <Rectangle.Fill>
                     <SolidColorBrush Opacity="0.01" Color="{Binding ElementName=gridBody, Path=Background, Converter={StaticResource SolidColorBrushToColor}}" />
                 </Rectangle.Fill>
