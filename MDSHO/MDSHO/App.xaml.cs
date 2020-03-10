@@ -24,28 +24,28 @@ namespace MDSHO
     {
         public AppVM AppVM { get; set; } = new AppVM();
         private Forms.NotifyIcon notifyIcon = new Forms.NotifyIcon();
-        private bool mustExit;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            // Used to globally catch unhalted exceptions.
             SetupGlobalExceptionHandling();
 
             // Make sure the same application is not running.
             string processName = Process.GetCurrentProcess().ProcessName;
-                Process[] processes = Process.GetProcessesByName(processName);
-                // If the application is already running do not start another one.
-                if (processes.Length > 1)
-                {
-                    MessageBox.Show($"{processName} is already running.\nPlease check the taskbar.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Current.Shutdown();
-                }
+            Process[] processes = Process.GetProcessesByName(processName);
+            // If the application is already running do not start another one.
+            if (processes.Length > 1)
+            {
+                MessageBox.Show($"{processName} is already running.\nPlease check the taskbar.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                Current.Shutdown();
+            }
 
 
                 //StartLife();
 
                 MainWindow = new MainWindow();
-                MainWindow.Closing += MainWindow_Closing;
                 Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
                 // notifyIcon.DoubleClick += (s, args) => ShowAboutWindow();
@@ -57,7 +57,7 @@ namespace MDSHO
                 //_notifyIcon.ContextMenuStrip.Items.Add("New window", Helper.GetImageFromImages("plus-o.png")).Click += (s, e) => NewWindow();
                 //_notifyIcon.ContextMenuStrip.Items.Add("Restore shortcuts...", Helper.GetImageFromImages("database-o.png")).Click += (s, e) => ShowRestoreWindow();
                 //_notifyIcon.ContextMenuStrip.Items.Add("About QuickShortcuts", Helper.GetImageFromImages("info-o.png")).Click += (s, e) => ShowAboutWindow();
-                notifyIcon.ContextMenuStrip.Items.Add("Exit application").Click += (s, e) => ExitApplication(confirm: false);
+                notifyIcon.ContextMenuStrip.Items.Add("Exit application").Click += (s, e) => AppVM.ExitApplication(confirm: false);
 
 
 
@@ -116,47 +116,8 @@ namespace MDSHO
 
 
 
-        private void MainWindow_Closing(object sender, CancelEventArgs e)
-        {
-            if (!mustExit)
-            {
-                e.Cancel = true;
-                // A hidden window can be shown again, a closed one not.
-                MainWindow.Hide();
-            }
-        }
 
 
-
-
-
-
-
-        /// <summary>
-        /// Exit the application.
-        /// </summary>
-        /// <param name="confirm">If false then do not disturb the user with confirmation questions.</param>
-        public void ExitApplication(bool confirm)
-        {
-            if (confirm)
-            {
-                MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to exit application?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (messageBoxResult == MessageBoxResult.Yes)
-                {
-                    notifyIcon.Dispose();
-                    notifyIcon = null;
-                    mustExit = true;
-                    MainWindow.Close();
-                }
-            }
-            else
-            {
-                    notifyIcon.Dispose();
-                    notifyIcon = null;
-                    mustExit = true;
-                    MainWindow.Close();
-            }
-        }
 
 
 

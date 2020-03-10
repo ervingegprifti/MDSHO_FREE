@@ -9,25 +9,70 @@ namespace MDSHO.ViewModels
 {
     public class AppVM : BaseVM
     {
+        public bool MustExitApplication { get; set; }
+
+
         public ObservableCollection<BoxVM> BoxVMs { get; set; } = new ObservableCollection<BoxVM>();
 
-        public AppVM()
-        {
 
-        }
-
-
+        /// <summary>
+        /// Exit the application.
+        /// </summary>
+        /// <param name="confirm">If false then do not disturb the user with confirmation questions.</param>
         public void ExitApplication(bool confirm)
         {
             try
             {
-                ((App)Application.Current).ExitApplication(confirm);
+                if (confirm)
+                {
+                    MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to exit application?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (messageBoxResult == MessageBoxResult.Yes)
+                    {
+                        MustExitApplication = true;
+                        Application.Current.MainWindow.Close();
+                    }
+                }
+                else
+                {
+                    MustExitApplication = true;
+                    Application.Current.MainWindow.Close();
+                }
             }
             catch (Exception ex)
             {
                 Error.Show(ex);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         public void ShowAboutWindow()

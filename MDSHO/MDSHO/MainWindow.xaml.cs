@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MDSHO.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,22 @@ namespace MDSHO
         {
             InitializeComponent();
 
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState.Minimized;
         }
+
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!((App)Application.Current).AppVM.MustExitApplication)
+            {
+                e.Cancel = true;
+                // A hidden window can be shown again, a closed one not.
+                Hide();
+            }
+        }
+
+
+
+
     }
 }
