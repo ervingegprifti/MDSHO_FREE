@@ -44,6 +44,42 @@
                 </Setter>
             </Style>
 
+            <!-- Used to style all the other buttons -->
+            <Style x:Key="StyleDarkButton" TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border 
+                                        CornerRadius="5" 
+                                        Padding="20,8" 
+                                        BorderThickness="0" 
+                                        BorderBrush="Black" 
+                                        Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DimGray" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#555555"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+
+
+
+
             <!-- Colors -->
             <Color x:Key="ColorMilk">#EAE7DD</Color>
             <Color x:Key="ColorErrorYellow">#fff5db</Color>

@@ -7,7 +7,6 @@ namespace MDSHO.ViewModels
 {
     public class BoxVM : BaseVM
     {
-        private AppVM appVM;
         public InfoVM InfoVM { get; set; }
         public RelayCommand ExitApplicationCommand { get; }
         public RelayCommand ShowAboutWindowCommand { get; }
@@ -17,10 +16,9 @@ namespace MDSHO.ViewModels
         {
             try
             {
-                appVM = ((App)Application.Current).AppVM;
                 InfoVM = infoVM;
-                ExitApplicationCommand = new RelayCommand(ExitApplication);
-                ShowAboutWindowCommand = new RelayCommand(ShowAboutWindow);
+                ExitApplicationCommand = new RelayCommand(ExitApplicationCmd);
+                ShowAboutWindowCommand = new RelayCommand(ShowAboutWindowCmd);
             }
             catch (Exception ex)
             {
@@ -29,28 +27,36 @@ namespace MDSHO.ViewModels
         }
 
 
-        private void ExitApplication(object parameter)
+        private void ExitApplicationCmd(object parameter)
         {
             try
             {
-                appVM.ExitApplication(true);
+                ((App)Application.Current).AppVM.ExitApplication(true);
             }
             catch (Exception ex)
             {
                 Error.Show(ex);
             }
         }
-        private void ShowAboutWindow(object parameter)
+
+
+        private void ShowAboutWindowCmd(object parameter)
         {
             try
             {
-                appVM.ShowAboutWindow();
+                ((App)Application.Current).AppVM.ShowAboutWindow();
             }
             catch (Exception ex)
             {
                 Error.Show(ex);
             }
         }
+
+
+
+
+
+
 
 
     }

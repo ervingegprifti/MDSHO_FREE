@@ -5,16 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDSHO"
         mc:Ignorable="d"
-        ShowInTaskbar="True"
+        Left="400"
+        Top="200"
+        Width="400"
+        Height="450"
+        ShowInTaskbar="False"
         WindowStyle="None"
         AllowsTransparency="True"
+        WindowStartupLocation="Manual"
         WindowState="Normal"
         Background="Transparent"
-        Focusable="False"
-        Title="BoxWindow"
-        Height="450"
-        Width="400">
+        BorderThickness="1"
+        Focusable="True"
+        Loaded="Window_Loaded">
 
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
 
     <!--Resources-->
     <Window.Resources>
@@ -73,13 +80,14 @@
 
 
         <!--Header-->
-        <Grid x:Name="gridTitle" Height="32">
+        <Grid x:Name="BoxTitle" Height="32" MouseDown="BoxTitle_MouseDown">
 
             <Grid.Background>
                 <!--<SolidColorBrush Color="{Binding InfoVM.TitleBackgroundSolidColorBrush.Color}" Opacity="{Binding InfoVM.TitleBackgroundOpacity}" />-->
                 <SolidColorBrush Color="OrangeRed" Opacity="1.0" />
             </Grid.Background>
 
+            
             <!--The context menu of the title-->
             <Grid.ContextMenu>
                 <ContextMenu>
@@ -89,10 +97,23 @@
                         </MenuItem.Icon>
                     </MenuItem>
                     <Separator/>
+                    <MenuItem x:Name="MenuItemDarkTheme" Header="Dark theme" Click="MenuItemDarkTheme_Click_1">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource apfont-theme-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="MenuItemLightTheme" Header="Light theme" Click="MenuItemLightTheme_Click_1">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource apfont-theme-o}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="MenuItemCustomTheme" Header="Custom theme" Click="MenuItemCustomTheme_Click" />
+                    <Separator/>
                     <MenuItem Header="Exit application" Command="{Binding ExitApplicationCommand}" />
                 </ContextMenu>
             </Grid.ContextMenu>
 
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>

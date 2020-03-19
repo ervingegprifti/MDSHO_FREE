@@ -22,7 +22,8 @@ namespace MDSHO
     /// </summary>
     public partial class App : Application
     {
-        public AppVM AppVM { get; set; } = new AppVM();
+        public AppVM AppVM { get; set; } = new AppVM(); // There is no DataContext for App
+
         private Forms.NotifyIcon notifyIcon = new Forms.NotifyIcon();
 
         protected override void OnStartup(StartupEventArgs e)
