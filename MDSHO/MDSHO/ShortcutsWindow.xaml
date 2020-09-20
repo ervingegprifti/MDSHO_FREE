@@ -1,0 +1,623 @@
+﻿<Window x:Class="MDSHO.ShortcutsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:fa5="http://schemas.fontawesome.com/icons/"
+        xmlns:local="clr-namespace:MDSHO"
+        xmlns:viewmodels="clr-namespace:MDSHO.ViewModels"
+        xmlns:converters="clr-namespace:MDSHO.ViewModels.Converters"
+        xmlns:dd="urn:gong-wpf-dragdrop"
+        mc:Ignorable="d"
+        Left="{Binding Left, Mode=TwoWay}"
+        Width="{Binding Width, Mode=TwoWay}"
+        Top="{Binding Top, Mode=TwoWay}"
+        Height="{Binding Height, Mode=TwoWay}"
+        ShowInTaskbar="False"
+        WindowStyle="None" 
+        AllowsTransparency="True" 
+        WindowStartupLocation="Manual"
+        WindowState="Normal" 
+        Background="Transparent" 
+        BorderBrush="{Binding WindowInfoVM.WindowBorderSolidColorBrush}"
+        BorderThickness="1"
+        Focusable="True"
+        Loaded="Window_Loaded">
+
+        <WindowChrome.WindowChrome>
+            <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
+        </WindowChrome.WindowChrome>
+
+    <!--Resources-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <converters:SelectedTreeViewItemBackgroundColorConverter x:Key="SelectedTreeViewItemBackgroundColorConverter"/>
+                    <converters:SelectedTreeViewItemBackgroundConverter x:Key="SelectedTreeViewItemBackgroundConverter"/>
+                    <Style x:Key="StyleTopRightButton" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{x:Null}"/>
+                        <Setter Property="BorderBrush" Value="{x:Null}"/>
+                        <Setter Property="Foreground" Value="{x:Null}"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Width" Value="32"/>
+                        <Setter Property="Height" Value="32"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontFamily" Value="{StaticResource apfont}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border BorderThickness="0" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Gray" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="DimGray" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <Style x:Key="StyleCustomThemeButton" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush}"/>
+                        <Setter Property="BorderBrush" Value="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush}"/>
+                        <Setter Property="Foreground" Value="{Binding WindowInfoVM.WindowTextSolidColorBrush}"/>
+                        <Setter Property="FontFamily" Value="{StaticResource apfont}"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border BorderThickness="0" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <!--<Style x:Key="HoverUnderlineStyle" TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>-->
+                    <Style x:Key="HoverStackPanelStyle" TargetType="StackPanel">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{Binding DataContext.WindowInfoVM.WindowTextSolidColorBrush, 
+                                                              Converter={StaticResource SelectedTreeViewItemBackgroundConverter}, 
+                                                              RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                                <!--WindowTextSolidColorBrush-->
+                                <!--SelectedTreeViewItemBackgroundSolidColorBrush-->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!--<Setter Property="Background" Value="{Binding DataContext.WindowInfoVM.WindowTextSolidColorBrush, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />-->
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <!--Header-->
+            <RowDefinition Height="Auto"/>
+            <!--Body-->
+            <RowDefinition Height="*"/>
+            <!--Footer-->
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <Grid 
+            x:Name="gridHeader"
+            Height="32" 
+            MouseDown="gridHeader_MouseDown">
+            <Grid.Background>
+                <SolidColorBrush Color="{Binding WindowInfoVM.TitleBackgroundSolidColorBrush.Color}" Opacity="{Binding WindowInfoVM.TitleBackgroundOpacity}" />
+            </Grid.Background>
+            <!--The context menu of the header-->
+            <Grid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="New window" Command="{Binding NewWindowCommand}">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource plus-o}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Clone window" Command="{Binding CloneWindowCommand}" Visibility="{Binding CloneWindowVisibility}">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource clone-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Clone window to all screens" Command="{Binding CloneWindowToAllScreensCommand}" Visibility="{Binding CloneWindowVisibility}">
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="menuItemRenameWindowTitle" Header="Rename window title" Click="menuItemRenameWindowTitle_Click">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource rename-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="menuItemDockWindowLeft" Header="Dock window left" Click="dockWindowLeft_Click">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource dock-left-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="menuItemDockWindowRight" Header="Dock window right" Click="dockWindowRight_Click">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource dock-right-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="menuItemDarkTheme" Header="Dark theme" Click="menuItemDarkTheme_Click">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource theme-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="menuItemLightTheme" Header="Light theme" Click="menuItemLightTheme_Click">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource theme-o}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem x:Name="menuItemMyTheme" Header="My theme" Click="menuItemMyTheme_Click" />
+                    <MenuItem x:Name="menuItemCustomTheme" Header="Custom theme" Click="menuItemCustomTheme_Click">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource brush-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Backup shortcuts" Command="{Binding BackupShortcutsCommand}">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource database-in-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Restore last shortcuts backup" Command="{Binding RestoreLastBackupCommand}">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource database-out-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Restore shortcuts..." Command="{Binding ShowRestoreWindowCommand}">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource database-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="About MDSHO" Command="{Binding ShowAboutWindowCommand}" />
+                    <MenuItem Header="Close window" Command="{Binding CloseWindowCommand}" Visibility="{Binding CloseWindowVisibility}" />
+                    <Separator/>
+                    <MenuItem Header="Delete window" Command="{Binding DeleteWindowCommand}" Visibility="{Binding DeleteWindowVisibility}">
+                        <MenuItem.Icon>
+                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource recycle-bin-s}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Exit application" Command="{Binding ExitCommand}" />
+
+                </ContextMenu>
+            </Grid.ContextMenu>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                Foreground="{Binding WindowInfoVM.TitleTextSolidColorBrush}"
+                FontFamily="{StaticResource apfont}"
+                FontSize="16"
+                Padding="8"
+                Margin="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="{StaticResource mdsho-s}"/>
+            <TextBlock 
+                x:Name="textBlockTitle" 
+                Text="{Binding Path=TitleDisplay}"
+                Margin="1,0,0,0"
+                Grid.Column="1"
+                Foreground="{Binding WindowInfoVM.TitleTextSolidColorBrush}"
+                TextWrapping="NoWrap" 
+                VerticalAlignment="Center"
+                MouseLeftButtonDown="textBlockTitle_MouseLeftButtonDown"
+                Visibility="Visible"/>
+            <TextBox
+                x:Name="textBoxTitle"
+                Text="{Binding Path=WindowInfoVM.Title}"
+                Margin="0"
+                Padding="1"
+                Grid.Column="1" 
+                BorderBrush="{x:Null}" 
+                BorderThickness="0"
+                VerticalAlignment="Center"
+                Visibility="Hidden" 
+                LostFocus="textBoxTitle_LostFocus" 
+                KeyDown="textBoxTitle_KeyDown"/>
+
+
+            <Button 
+                Grid.Column="2" 
+                Click="dockWindowLeft_Click"
+                Style="{StaticResource StyleTopRightButton}"
+                Foreground="{Binding WindowInfoVM.TitleTextSolidColorBrush}"
+                ToolTip="Dock window left"
+                Content="{StaticResource dock-left-o}"/>
+
+            <Button 
+                Grid.Column="3" 
+                Click="dockWindowRight_Click"
+                Style="{StaticResource StyleTopRightButton}"
+                Foreground="{Binding WindowInfoVM.TitleTextSolidColorBrush}"
+                ToolTip="Dock window right"
+                Content="{StaticResource dock-right-o}"/>
+
+
+            <Button 
+                Grid.Column="4" 
+                Command="{Binding NewWindowCommand}"
+                Style="{StaticResource StyleTopRightButton}"
+                Foreground="{Binding WindowInfoVM.TitleTextSolidColorBrush}"
+                ToolTip="New window"
+                Content="{StaticResource plus-o}"/>
+            <Button 
+                Grid.Column="5" 
+                Command="{Binding CloneWindowCommand}"
+                Visibility="{Binding CloneWindowVisibility}"
+                Style="{StaticResource StyleTopRightButton}"
+                Foreground="{Binding WindowInfoVM.TitleTextSolidColorBrush}"
+                ToolTip="Clone window"
+                Content="{StaticResource clone-o}"/>
+            <Button 
+                Grid.Column="6" 
+                Command="{Binding CloseWindowCommand}"
+                Style="{StaticResource StyleTopRightButton}"
+                Foreground="{Binding WindowInfoVM.TitleTextSolidColorBrush}"
+                ToolTip="Close window"
+                Content="{StaticResource times-o}"
+                Visibility="{Binding CloseWindowVisibility}"/>
+        </Grid>
+
+        <!--Body-->
+        <Grid 
+            x:Name="gridBody"
+            Margin="0,0,0,0"
+            Grid.Row="1">
+            <!--Body background-->
+            <Grid.Background>
+                <SolidColorBrush 
+                    Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}"
+                    Opacity="{Binding WindowInfoVM.WindowBackgroundOpacity}" />
+            </Grid.Background>
+            <TreeView 
+                dd:DragDrop.IsDragSource="True"
+                dd:DragDrop.IsDropTarget="True"
+                dd:DragDrop.DropHandler="{Binding}"
+                x:Name="TreeViewShortcuts"
+                ItemsSource="{Binding RootItemVMs}"
+                Padding="0,5,0,5"
+                Margin="0"
+                Background="Transparent" 
+                BorderBrush="{x:Null}"
+                AllowDrop="True" 
+                ScrollViewer.ScrollChanged="TreeViewShortcuts_ScrollChanged"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+
+                <TreeView.Resources>
+                    <!--https://stackoverflow.com/questions/17814308/treeview-shows-blue-for-selected-item-->
+                    <!--Active selected item background color-->
+                    <SolidColorBrush 
+                        x:Key="{x:Static SystemColors.HighlightBrushKey}" 
+                        Color="{Binding DataContext.WindowInfoVM.WindowTextSolidColorBrush.Color, 
+                                        Converter={StaticResource SelectedTreeViewItemBackgroundColorConverter}, 
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    <!--Inactive selected item background color-->
+                    <SolidColorBrush 
+                        x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" 
+                        Color="{Binding DataContext.WindowInfoVM.WindowTextSolidColorBrush.Color, 
+                                        Converter={StaticResource SelectedTreeViewItemBackgroundColorConverter}, 
+                                        RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                </TreeView.Resources>
+
+                <!--The context menu of treeview-->
+                <TreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="New group" Command="{Binding NewGroupCommand}">
+                            <MenuItem.Icon>
+                                <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource plus-o}"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Paste" Command="{Binding PasteCommand}">
+                            <MenuItem.Icon>
+                                <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource paste-o}"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Sort shortcuts ascending" Command="{Binding SortAscendingCommand}">
+                            <MenuItem.Icon>
+                                <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource sort-asc-o}"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Sort shortcuts descending" Command="{Binding SortDescendingCommand}">
+                            <MenuItem.Icon>
+                                <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource sort-desc-o}"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Delete all shortcuts" Command="{Binding DeleteAllItemsCommand}">
+                            <MenuItem.Icon>
+                                <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource recycle-bin-o}"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </TreeView.ContextMenu>
+
+                <!--The style for the treeview items-->
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    </Style>
+                </TreeView.ItemContainerStyle>
+
+                <TreeView.ItemTemplate>
+
+                    <HierarchicalDataTemplate ItemsSource="{Binding ItemVMs}">
+
+                        <StackPanel 
+                            x:Name="StackPanelItem"
+                            Orientation="Horizontal" 
+                            AllowDrop="True"
+                            MouseLeftButtonDown="StackPanelItem_MouseLeftButtonDown"
+                            MouseLeftButtonUp="StackPanelItem_MouseLeftButtonUp"
+                            ToolTip="{Binding Path=Target}"
+                            Style="{StaticResource HoverStackPanelStyle}">
+
+                            <!--The context menu of an item-->
+                            <StackPanel.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="New group" Command="{Binding NewGroupCommand}" Visibility="{Binding NewGroupVisibility}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource plus-o}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Rename" Command="{Binding EditNameCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource rename-o}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource recycle-bin-o}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <Separator/>
+                                    <MenuItem Header="Cut" Command="{Binding CutCommand}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource cut-o}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Copy" Command="{Binding CopyCommand}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource copy-o}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Paste" Command="{Binding PasteCommand}" Visibility="{Binding PasteVisibility}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource paste-o}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <Separator Visibility="{Binding SortVisibility}"/>
+                                    <MenuItem Header="Sort shortcuts ascending" Command="{Binding SortAscendingCommand}" Visibility="{Binding SortVisibility}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource sort-asc-o}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Sort shortcuts descending" Command="{Binding SortDescendingCommand}" Visibility="{Binding SortVisibility}">
+                                        <MenuItem.Icon>
+                                            <TextBlock Style="{StaticResource StyleMenuItemFontIcon}" Text="{StaticResource sort-desc-o}"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </StackPanel.ContextMenu>
+
+                            <!--This is used to display the group icon-->
+                            <TextBlock
+                                Visibility="{Binding FontIconVisibility}"
+                                Foreground="{Binding DataContext.WindowInfoVM.WindowTextSolidColorBrush, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                FontFamily="{StaticResource apfont}"
+                                FontSize="16"
+                                Width="16"
+                                Margin="1,0,5,0" 
+                                VerticalAlignment="Center"
+                                Text="{StaticResource mdsho-o}" />
+                            <!--This is used to display the shortcut icon-->
+                            <Image 
+                                Visibility="{Binding ImageIconVisibility}" 
+                                Source="{Binding ImageIconBitmapSource}" 
+                                Width="16" 
+                                Margin="1,0,5,0" 
+                                VerticalAlignment="Center" />
+
+                            <!--This is to display the name-->
+                            <Grid x:Name="GridName" Margin="0,4,4,4">
+                                <TextBlock 
+                                    x:Name="TextBlockName"
+                                    Visibility="Visible"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Padding="2,0,0,0"
+                                    Text="{Binding Name}" 
+                                    Foreground="{Binding DataContext.WindowInfoVM.WindowTextSolidColorBrush, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                    VerticalAlignment="Center">
+                                </TextBlock>
+                                <TextBox 
+                                    x:Name="TextBoxName" 
+                                    Visibility="Hidden"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Padding="0"
+                                    Text="{Binding Name}" 
+                                    BorderBrush="{x:Null}" 
+                                    BorderThickness="0"
+                                    LostFocus="TextBoxName_LostFocus"
+                                    KeyDown="TextBoxName_KeyDown" 
+                                    IsVisibleChanged="TextBoxName_IsVisibleChanged"
+                                    VerticalAlignment="Center">
+                                </TextBox>
+                            </Grid>
+
+                            <!--WindowInfoVM.WindowTextSolidColorBrush-->
+
+                        </StackPanel>
+
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+
+            </TreeView>
+
+
+        </Grid>
+        <TextBlock
+            Grid.Row="1"
+            Visibility="{Binding DragItemsHereInfoVisibility}"
+            Foreground="{Binding DataContext.WindowInfoVM.WindowTextSolidColorBrush, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            FontFamily="{StaticResource apfont}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Drag file/folder here!" />
+        
+
+        <!--Footer-->
+        <Grid 
+            x:Name="gridColors"
+            Grid.Row="2"
+            Height="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button 
+                x:Name="ButtonCustomTheme"
+                Grid.Column="0" 
+                Style="{StaticResource StyleCustomThemeButton}"
+                ToolTip="Custom theme"
+                Content="{StaticResource brush-s}"
+                Click="ButtonCustomTheme_Click">
+            </Button>
+
+
+
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+
+
+
+
+
+
+            <Rectangle x:Name="rectangleColor10" Grid.Column="1" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="1.0" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor09" Grid.Column="2" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.9" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor08" Grid.Column="3" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.8" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor07" Grid.Column="4" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.7" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor06" Grid.Column="5" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.6" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor05" Grid.Column="6" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.5" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor04" Grid.Column="7" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.4" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor03" Grid.Column="8" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.3" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor02" Grid.Column="9" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.2" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor01" Grid.Column="10" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.1" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangleColor00" Grid.Column="11" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.01" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="rectangle" Grid.Column="12" MouseLeftButtonDown="rectangleColors_MouseLeftButtonDown">
+                <Rectangle.Fill>
+                    <SolidColorBrush Opacity="0.01" Color="{Binding WindowInfoVM.WindowBackgroundSolidColorBrush.Color}" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+
+    </Grid>
+
+
+</Window>

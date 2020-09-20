@@ -2,92 +2,166 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MDSHO"
-             xmlns:converters="clr-namespace:MDSHO.ViewModels.Converters"
-             StartupUri="MainWindow.xaml">
+             xmlns:clr="clr-namespace:System;assembly=mscorlib" >
+    <!--SessionEnding="Application_SessionEnding"-->
+    <!--StartupUri="MainWindow.xaml"-->
 
-    <!--http://www.wpftutorial.net/MergedDictionaryPerformance.html-->
-    <!--https://stackoverflow.com/questions/6693320/mergeddictionaries-and-resource-lookup-->
     <Application.Resources>
         <ResourceDictionary>
-
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Assets/Fonts/APFont.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <!--Font Icon Names-->
+                    <clr:String x:Key="times-o">&#xe900;</clr:String>
+                    <clr:String x:Key="times-s">&#xe901;</clr:String>
+                    <clr:String x:Key="info-o">&#xe902;</clr:String>
+                    <clr:String x:Key="info-s">&#xe903;</clr:String>
+                    <clr:String x:Key="mdsho-o">&#xe904;</clr:String>
+                    <clr:String x:Key="mdsho-s">&#xe905;</clr:String>
+                    <clr:String x:Key="copy-o">&#xe906;</clr:String>
+                    <clr:String x:Key="copy-s">&#xe907;</clr:String>
+                    <clr:String x:Key="warning-o">&#xe908;</clr:String>
+                    <clr:String x:Key="warning-s">&#xe909;</clr:String>
+                    <clr:String x:Key="plus-o">&#xe90a;</clr:String>
+                    <clr:String x:Key="plus-s">&#xe90b;</clr:String>
+                    <clr:String x:Key="dock-left-o">&#xe90c;</clr:String>
+                    <clr:String x:Key="dock-left-s">&#xe90d;</clr:String>
+                    <clr:String x:Key="dock-right-o">&#xe90e;</clr:String>
+                    <clr:String x:Key="dock-right-s">&#xe90f;</clr:String>
+                    <clr:String x:Key="rename-o">&#xe910;</clr:String>
+                    <clr:String x:Key="rename-s">&#xe911;</clr:String>
+                    <clr:String x:Key="clone-o">&#xe912;</clr:String>
+                    <clr:String x:Key="clone-s">&#xe913;</clr:String>
+                    <clr:String x:Key="clones-o">&#xe914;</clr:String>
+                    <clr:String x:Key="clones-s">&#xe915;</clr:String>
+                    <clr:String x:Key="split-in-two-o">&#xe916;</clr:String>
+                    <clr:String x:Key="split-in-two-s">&#xe917;</clr:String>
+                    <clr:String x:Key="split-in-four-o">&#xe918;</clr:String>
+                    <clr:String x:Key="split-in-four-s">&#xe919;</clr:String>
+                    <clr:String x:Key="cut-o">&#xe91a;</clr:String>
+                    <clr:String x:Key="cut-s">&#xe91b;</clr:String>
+                    <clr:String x:Key="recycle-bin-o">&#xe91c;</clr:String>
+                    <clr:String x:Key="recycle-bin-s">&#xe91d;</clr:String>
+                    <clr:String x:Key="desktop-o">&#xe91e;</clr:String>
+                    <clr:String x:Key="desktop-s">&#xe91f;</clr:String>
+                    <clr:String x:Key="brush-o">&#xe920;</clr:String>
+                    <clr:String x:Key="brush-s">&#xe921;</clr:String>
+                    <clr:String x:Key="settings-o">&#xe922;</clr:String>
+                    <clr:String x:Key="settings-s">&#xe923;</clr:String>
+                    <clr:String x:Key="control-panel-o">&#xe924;</clr:String>
+                    <clr:String x:Key="control-panel-s">&#xe925;</clr:String>
+                    <clr:String x:Key="minus-o">&#xe926;</clr:String>
+                    <clr:String x:Key="minus-s">&#xe927;</clr:String>
+                    <clr:String x:Key="send-o">&#xe928;</clr:String>
+                    <clr:String x:Key="send-s">&#xe929;</clr:String>
+                    <clr:String x:Key="sort-asc-o">&#xe92a;</clr:String>
+                    <clr:String x:Key="sort-asc-s">&#xe92b;</clr:String>
+                    <clr:String x:Key="sort-desc-o">&#xe92c;</clr:String>
+                    <clr:String x:Key="sort-desc-s">&#xe92d;</clr:String>
+                    <clr:String x:Key="theme-o">&#xe92e;</clr:String>
+                    <clr:String x:Key="theme-s">&#xe92f;</clr:String>
+                    <clr:String x:Key="paste-o">&#xe930;</clr:String>
+                    <clr:String x:Key="paste-s">&#xe931;</clr:String>
+                    <clr:String x:Key="key-o">&#xe932;</clr:String>
+                    <clr:String x:Key="key-s">&#xe933;</clr:String>
+                    <clr:String x:Key="paperclip-o">&#xe934;</clr:String>
+                    <clr:String x:Key="paperclip-s">&#xe935;</clr:String>
+                    <clr:String x:Key="paperclip-angle-o">&#xe936;</clr:String>
+                    <clr:String x:Key="paperclip-angle-s">&#xe937;</clr:String>
+                    <clr:String x:Key="paperclip-half-o">&#xe938;</clr:String>
+                    <clr:String x:Key="paperclip-half-s">&#xe939;</clr:String>
+                    <clr:String x:Key="circle-o">&#xe93a;</clr:String>
+                    <clr:String x:Key="circle-s">&#xe93b;</clr:String>
+                    <clr:String x:Key="circles-o">&#xe93c;</clr:String>
+                    <clr:String x:Key="circles-s">&#xe93d;</clr:String>
+                    <clr:String x:Key="grid-o">&#xe93e;</clr:String>
+                    <clr:String x:Key="grid-s">&#xe93f;</clr:String>
+                    <clr:String x:Key="dialpad-o">&#xe940;</clr:String>
+                    <clr:String x:Key="dialpad-s">&#xe941;</clr:String>
+                    <clr:String x:Key="round-table-meeting-o">&#xe942;</clr:String>
+                    <clr:String x:Key="round-table-meeting-s">&#xe943;</clr:String>
+                    <clr:String x:Key="conference-call-o">&#xe944;</clr:String>
+                    <clr:String x:Key="conference-call-s">&#xe945;</clr:String>
+                    <clr:String x:Key="database-o">&#xe946;</clr:String>
+                    <clr:String x:Key="database-s">&#xe947;</clr:String>
+                    <clr:String x:Key="database-in-o">&#xe948;</clr:String>
+                    <clr:String x:Key="database-in-s">&#xe949;</clr:String>
+                    <clr:String x:Key="database-out-o">&#xe94a;</clr:String>
+                    <clr:String x:Key="database-out-s">&#xe94b;</clr:String>
 
-            <converters:SolidColorBrushToColor x:Key="SolidColorBrushToColor" />
 
-            <!-- Used to style all the cancel buttons -->
-            <Style x:Key="StyleDismissButton" TargetType="{x:Type Button}">
-                <Setter Property="Background" Value="LightGray"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="Content" Value="Dismiss"/>
-                <Setter Property="Margin" Value="20,20,20,20"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="5" Padding="20,8" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Gray" />
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Background" Value="DimGray"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                    <FontFamily x:Key="apfont">pack://application:,,,/Fonts/#apfont</FontFamily>
+                    
+                    <Style x:Key="StyleMenuItemFontIcon" TargetType="{x:Type TextBlock}">
+                        <Setter Property="Width" Value="16"/>
+                        <Setter Property="Height" Value="16"/>
+                        <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#apfont"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="Foreground" Value="#424242"/>
+                    </Style>
 
-            <!-- Used to style all the other buttons -->
-            <Style x:Key="StyleDarkButton" TargetType="{x:Type Button}">
-                <Setter Property="Background" Value="Gray"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Cursor" Value="Hand"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border 
+                    <Style x:Key="StyleDarkButton" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Gray"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border 
                                         CornerRadius="5" 
                                         Padding="20,8" 
                                         BorderThickness="0" 
                                         BorderBrush="Black" 
                                         Background="{TemplateBinding Background}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="DimGray" />
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Trigger>
-                                <Trigger Property="IsPressed" Value="True">
-                                    <Setter Property="Background" Value="#555555"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="DimGray" />
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="#555555"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
 
-
-
-
-
-
-            <!-- Colors -->
-            <Color x:Key="ColorMilk">#EAE7DD</Color>
-            <Color x:Key="ColorErrorYellow">#fff5db</Color>
-            <SolidColorBrush x:Key="SolidColorBrushMilk" Color="{StaticResource ColorMilk}"/>
-            <SolidColorBrush x:Key="SolidColorBrushErrorYellow" Color="{StaticResource ColorErrorYellow}"/>
-
+                    <Style x:Key="StyleLightButton" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border 
+                                        CornerRadius="5" 
+                                        Padding="20,8" 
+                                        BorderThickness="0" 
+                                        BorderBrush="Black" 
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Gray" />
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="Background" Value="DimGray"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-    
-    
+
 </Application>

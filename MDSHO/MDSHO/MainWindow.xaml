@@ -5,11 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDSHO"
         mc:Ignorable="d"
-        Title="MainWindow"
-        Width="800"
-        Height="450"
-        Closing="Window_Closing">
+        Title="Main window" 
+        Width="350"         
+        Height="270" 
+        Icon="/MDSHO;component/Images/logo_black_16x16.png" 
+        ResizeMode="NoResize" 
+        Topmost="True" 
+        Background="#dddddd"
+        WindowStartupLocation="CenterScreen">
+
+
     <Grid>
 
+        
+
     </Grid>
+    
 </Window>

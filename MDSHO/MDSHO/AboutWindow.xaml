@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDSHO"
         mc:Ignorable="d"
-        Title="About"
-        Width="400"
-        Height="300" 
-        Icon="/MDSHO;component/Assets/Images/info_o.png" 
+        Title="About" 
+        Width="350"
+        Height="250" 
+        Icon="/MDSHO;component/Images/info-s.png" 
         ResizeMode="NoResize" 
         Topmost="True" 
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource SolidColorBrushMilk}">
+        Background="#dddddd">
+
 
     <!--Resources-->
     <Window.Resources>
@@ -21,78 +22,104 @@
                 <Setter Property="HorizontalAlignment" Value="Right"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="11"/>
-                <Setter Property="FontWeight" Value="Medium" />
-                <Setter Property="Padding" Value="20,0,0,5"/>
+                <Setter Property="Padding" Value="20,0,0,2"/>
             </Style>
             <Style x:Key="StyleValue" TargetType="{x:Type Label}">
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="11"/>
-                <Setter Property="Padding" Value="3,0,0,5"/>
+                <Setter Property="Padding" Value="3,0,0,2"/>
             </Style>
         </ResourceDictionary>
     </Window.Resources>
 
+
     <Grid>
 
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/> <!-- 0 -->
-            <ColumnDefinition Width="*"/>    <!-- 1 -->
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/> <!-- 0 -->
-            <RowDefinition Height="Auto"/> <!-- 1 -->
-            <RowDefinition Height="Auto"/> <!-- 2 -->
-            <RowDefinition Height="Auto"/> <!-- 3 -->
-            <RowDefinition Height="Auto"/> <!-- 4 -->
-            <RowDefinition Height="Auto"/> <!-- 5 -->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Logo -->
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Background="White">
+        <StackPanel 
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal"
+            Background="White">
             <Image 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center"  
                 Width="32"            
                 Height="32" 
-                Margin="20,15,10,20" 
-                Source="Assets/Images/logo_black_32x32.png" />
+                Margin="10" 
+                Source="Images/logo_black_16x16.png" />
             <Label 
-                Content="(MDSHO) Multi Desktop Shortcut Organizer" 
+                Content="MDSHO" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Center"    
-                Margin="0,0,0,-5" 
+                Margin="0" 
                 FontWeight="Bold" 
                 FontSize="14" />
         </StackPanel>
-        
-        <!-- Version -->
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Background="White" Margin="0,0,0,20">
-            <Label Grid.Row="1" Grid.Column="0" Content="version: " Style="{StaticResource StyleLabel}" />
-            <Label Grid.Row="1" Grid.Column="1" x:Name="LabelVersion" Style="{StaticResource StyleValue}" />       
+
+        <!--Version-->
+        <Label Grid.Row="1" Grid.Column="0" Content="Version: " Style="{StaticResource StyleLabel}" Margin="0,20,0,0"/>
+        <Label Grid.Row="1" Grid.Column="1" x:Name="LabelVersion" Style="{StaticResource StyleValue}" Margin="0,20,0,0"/>
+        <!--Developer-->
+        <Label Grid.Row="2" Grid.Column="0" Content="Developer: " Style="{StaticResource StyleLabel}"/>
+        <Label Grid.Row="2" Grid.Column="1" Content="Ervin Gegprifti" Style="{StaticResource StyleValue}"/>
+        <!--E-mail-->
+        <Label Grid.Row="3" Grid.Column="0" Content="E-mail: " Style="{StaticResource StyleLabel}"/>
+        <Label Grid.Row="3" Grid.Column="1" Content="gegprifti.ervin@gmail.com" Style="{StaticResource StyleValue}"/>
+        <!--Website-->
+        <Label Grid.Row="4" Grid.Column="0" Content="Github: " Style="{StaticResource StyleLabel}"/>
+        <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource StyleValue}">
+            <Hyperlink
+                x:Name="HyperlinkWebsite"
+                NavigateUri="https://github.com/ervingegprifti/MDSHO"
+                RequestNavigate="HyperlinkWebsite_RequestNavigate">
+                https://github.com/ervingegprifti/MDSHO
+            </Hyperlink>
+        </Label>
+        <!--Home-->
+        <Label Grid.Row="5" Grid.Column="0" Content="Home: " Style="{StaticResource StyleLabel}"/>
+        <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource StyleValue}">
+            <Hyperlink
+                x:Name="HyperlinHome"
+                NavigateUri="http://gegprifti.com/"
+                RequestNavigate="HyperlinHome_RequestNavigate">
+                gegprifti.com
+            </Hyperlink>
+        </Label>
+        <!--Privacy & Policy, Terms & Conditions-->
+        <StackPanel
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="0,0,10,5">
         </StackPanel>
 
-        <!-- Developer -->
-        <Label Grid.Row="2" Grid.Column="0" Content="developer: " Style="{StaticResource StyleLabel}"/>
-        <Label Grid.Row="2" Grid.Column="1" Content="Ervin Gegprifti" Style="{StaticResource StyleValue}"/>
-        <!-- E-mail -->
-        <Label Grid.Row="3" Grid.Column="0" Content="e-mail: " Style="{StaticResource StyleLabel}"/>
-        <Label Grid.Row="3" Grid.Column="1" Content="gegprifti.ervin@gmail.com" Style="{StaticResource StyleValue}"/>
-        <!-- Website -->
-        <Label Grid.Row="4" Grid.Column="0" Content="website: " Style="{StaticResource StyleLabel}"/>
-        <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource StyleValue}">
-            <Hyperlink x:Name="HyperlinkWebsite" NavigateUri="https://github.com/ervingegprifti/mdsho" RequestNavigate="HyperlinkWebsite_RequestNavigate">
-                https://github.com/ervingegprifti/mdsho
-            </Hyperlink>
-        </Label>
-        <!-- License -->
-        <Label Grid.Row="5" Grid.Column="0" Content="license: " Style="{StaticResource StyleLabel}"/>
-        <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource StyleValue}">
-            <Hyperlink x:Name="HyperlinkLicense" NavigateUri="https://github.com/ervingegprifti/mdsho/blob/master/LICENSE" RequestNavigate="HyperlinkLicense_RequestNavigate">
-                MIT
-            </Hyperlink>
-        </Label>
-        
+
+
     </Grid>
+    
+    
+
+
+
+
 
 </Window>

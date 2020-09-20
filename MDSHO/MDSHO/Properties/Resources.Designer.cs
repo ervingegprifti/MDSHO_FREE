@@ -83,6 +83,26 @@ namespace MDSHO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon logo_black_o_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("logo_black_o_16x16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon logo_black_o_32xx32 {
+            get {
+                object obj = ResourceManager.GetObject("logo_black_o_32xx32", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon logo_white_16x16 {
             get {
                 object obj = ResourceManager.GetObject("logo_white_16x16", resourceCulture);
@@ -96,6 +116,26 @@ namespace MDSHO.Properties {
         internal static System.Drawing.Icon logo_white_32x32 {
             get {
                 object obj = ResourceManager.GetObject("logo_white_32x32", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon logo_white_o_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("logo_white_o_16x16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon logo_white_o_32xx32 {
+            get {
+                object obj = ResourceManager.GetObject("logo_white_o_32xx32", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

@@ -1,6 +1,11 @@
-﻿using System;
+﻿using MDSHO.Data;
+using MDSHO.Helpers;
+using MDSHO.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MDSHO.ViewModels;
+
 
 namespace MDSHO
 {
@@ -19,68 +24,115 @@ namespace MDSHO
     public partial class CustomThemeWindow : Window
     {
         // Store old values
-        //private Color windowBorderColor;
-        //private Color titleBackgroundColor;
-        //private double titleBackgroundOpacity;
-        //private Color titleTextColor;
-        private Color boxBg;
-        private double boxBgOpacity;
-        //private Color windowTextColor;
-        ////
+        private Color windowBorderColor;
+        private Color titleBackgroundColor;
+        private double titleBackgroundOpacity;
+        private Color titleTextColor;
+        private Color windowBackgroundColor;
+        private double windowBackgroundOpacity;
+        private Color windowTextColor;
+        //
         bool isCancel = true;
 
-
-        public CustomThemeWindow(InfoVM infoVM)
+        public CustomThemeWindow(WindowInfoVM windowInfoVM)
         {
             InitializeComponent();
 
-            // Get the datacontext of the window calling this custom theme window
-            DataContext = infoVM;
+            try
+            {
+                // Get the datacontext of the window calling this custom theme window
+                DataContext = windowInfoVM;
 
-            // Store old values
-            //windowBorderColor = infoVM.WindowBorderSolidColorBrush.Color;
-            //titleBackgroundColor = infoVM.TitleBackgroundSolidColorBrush.Color;
-            //titleBackgroundOpacity = infoVM.TitleBackgroundOpacity;
-            //titleTextColor = infoVM.TitleTextSolidColorBrush.Color;
-            boxBg = infoVM.BoxBg.Color;
-            boxBgOpacity = infoVM.BoxBgOpacity;
-            //windowTextColor = infoVM.WindowTextSolidColorBrush.Color;
+                // Store old values
+                windowBorderColor = windowInfoVM.WindowBorderSolidColorBrush.Color;
+                titleBackgroundColor = windowInfoVM.TitleBackgroundSolidColorBrush.Color;
+                titleBackgroundOpacity = windowInfoVM.TitleBackgroundOpacity;
+                titleTextColor = windowInfoVM.TitleTextSolidColorBrush.Color;
+                windowBackgroundColor = windowInfoVM.WindowBackgroundSolidColorBrush.Color;
+                windowBackgroundOpacity = windowInfoVM.WindowBackgroundOpacity;
+                windowTextColor = windowInfoVM.WindowTextSolidColorBrush.Color;
+            }
+            catch (Exception ex)
+            {
+                Error.ShowDialog(ex);
+            }
         }
 
-        private void ButtonApply_Click(object sender, RoutedEventArgs e)
+        private void buttonApply_Click(object sender, RoutedEventArgs e)
         {
-            // TODO SaveData.SaveShortcuts(false);
-            isCancel = false;
-            Close();
+            try
+            {
+                SaveData.SaveShortcuts(false);
+                isCancel = false;
+                // Close custom theme window
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Error.ShowDialog(ex);
+            }
         }
 
-        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
-            isCancel = true;
-            Close();
+            try
+            {
+                isCancel = true;
+                // Close custom theme window
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Error.ShowDialog(ex);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            RestoreOldValues();
+            try
+            {
+                RestoreOldValues();
+            }
+            catch (Exception ex)
+            {
+                Error.ShowDialog(ex);
+            }
         }
 
         private void RestoreOldValues()
         {
-            if (isCancel)
+            try
             {
-                InfoVM infoVM = (InfoVM)DataContext;
-                // Restore old values
-                //infoVM.WindowBorderSolidColorBrush.Color = windowBorderColor;
-                //infoVM.TitleBackgroundSolidColorBrush.Color = titleBackgroundColor;
-                //infoVM.TitleBackgroundOpacity = titleBackgroundOpacity;
-                //infoVM.TitleTextSolidColorBrush.Color = titleTextColor;
-                infoVM.BoxBg.Color = boxBg;
-                infoVM.BoxBgOpacity = boxBgOpacity;
-                //infoVM.WindowTextSolidColorBrush.Color = windowTextColor;
+                if (isCancel)
+                {
+                    WindowInfoVM windowInfoVM = (WindowInfoVM)DataContext;
+                    // Restore old values
+                    windowInfoVM.WindowBorderSolidColorBrush.Color = windowBorderColor;
+                    windowInfoVM.TitleBackgroundSolidColorBrush.Color = titleBackgroundColor;
+                    windowInfoVM.TitleBackgroundOpacity = titleBackgroundOpacity;
+                    windowInfoVM.TitleTextSolidColorBrush.Color = titleTextColor;
+                    windowInfoVM.WindowBackgroundSolidColorBrush.Color = windowBackgroundColor;
+                    windowInfoVM.WindowBackgroundOpacity = windowBackgroundOpacity;
+                    windowInfoVM.WindowTextSolidColorBrush.Color = windowTextColor;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.ShowDialog(ex);
             }
         }
-
-
     }
+
 }
+
+
+/*
+try
+{
+
+}
+catch (Exception ex)
+{
+    Error.ShowDialog(ex, this);
+}
+*/

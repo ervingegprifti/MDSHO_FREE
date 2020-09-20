@@ -3,29 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:MDSHO"
         mc:Ignorable="d"
         Title="Custom Theme" 
         Width="350" 
-        Height="430"
+        Height="430" 
         ResizeMode="NoResize" 
-        WindowStartupLocation="CenterScreen"
+        Icon="/MDSHO;component/Images/brush-s.png" 
+        WindowStartupLocation="CenterScreen" 
         Topmost="True"
-        Closing="Window_Closing"
-        >
-    
-    
-    
-    
-    
-    
-    
-    
-    <!--xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"-->
-    <!--Icon="/QuickShortcuts;component/Images/color-palete-o.png"-->
+        Closing="Window_Closing">
 
     <!--Styles-->
-    <!--<Window.Resources>
+    <Window.Resources>
         <ResourceDictionary>
             <Style x:Key="StyleContainer" TargetType="{x:Type StackPanel}">
                 <Setter Property="Margin" Value="0,7,0,7"/>
@@ -54,9 +45,7 @@
                 <Setter Property="ShowStandardColors" Value="False"/>
             </Style>
         </ResourceDictionary>
-    </Window.Resources>-->
-
-
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -90,7 +79,7 @@
             </Grid.RowDefinitions>
 
             <!--Window border color-->
-            <!--<StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource StyleContainer}">
+            <StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource StyleContainer}">
                 <Label Content="Window border color:" />
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1" Style="{StaticResource StyleContainer}">
@@ -99,10 +88,10 @@
                     Background="{Binding WindowBorderSolidColorBrush}"
                     SelectedColor="{Binding WindowBorderSolidColorBrush.Color}" />
             </StackPanel>
-            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StyleSeparatorLine}"/>-->
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StyleSeparatorLine}"/>
 
             <!--Title background color-->
-            <!--<StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource StyleContainer}">
+            <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource StyleContainer}">
                 <Label Content="Title background color:" />
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource StyleContainer}">
@@ -110,10 +99,10 @@
                     Style="{StaticResource StyleColorPicker}"
                     Background="{Binding TitleBackgroundSolidColorBrush}"
                     SelectedColor="{Binding TitleBackgroundSolidColorBrush.Color}" />
-            </StackPanel>-->
+            </StackPanel>
 
             <!--Title background opacity-->
-            <!--<StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource StyleContainer}" Margin="0,0,0,7">
+            <StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource StyleContainer}" Margin="0,0,0,7">
                 <Label Content="Opacity:" />
             </StackPanel>
             <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource StyleContainer}" Margin="0,0,0,7">
@@ -124,10 +113,10 @@
                     TickFrequency="0.1"
                     IsSnapToTickEnabled="True"
                     Value="{Binding TitleBackgroundOpacity}"/>
-            </StackPanel>-->
+            </StackPanel>
 
             <!--Title text color-->
-            <!--<StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StyleContainer}">
+            <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource StyleContainer}">
                 <Label Content="Title text color:" />
             </StackPanel>
             <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource StyleContainer}">
@@ -136,10 +125,10 @@
                     Background="{Binding TitleTextSolidColorBrush}"
                     SelectedColor="{Binding TitleTextSolidColorBrush.Color}" />
             </StackPanel>
-            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StyleSeparatorLine}"/>-->
+            <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StyleSeparatorLine}"/>
 
             <!--Window background color-->
-            <!--<StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource StyleContainer}">
+            <StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource StyleContainer}">
                 <Label Content="Window background color:" />
             </StackPanel>
             <StackPanel Grid.Row="4" Grid.Column="1" Style="{StaticResource StyleContainer}">
@@ -147,10 +136,10 @@
                     Style="{StaticResource StyleColorPicker}"
                     Background="{Binding WindowBackgroundSolidColorBrush}"
                     SelectedColor="{Binding WindowBackgroundSolidColorBrush.Color}" />
-            </StackPanel>-->
+            </StackPanel>
 
             <!--Window background opacity-->
-            <!--<StackPanel Grid.Row="5" Grid.Column="0" Style="{StaticResource StyleContainer}" Margin="0,0,0,7">
+            <StackPanel Grid.Row="5" Grid.Column="0" Style="{StaticResource StyleContainer}" Margin="0,0,0,7">
                 <Label Content="Opacity:" />
             </StackPanel>
             <StackPanel Grid.Row="5" Grid.Column="1" Style="{StaticResource StyleContainer}" Margin="0,0,0,7">
@@ -161,10 +150,10 @@
                     TickFrequency="0.1"
                     IsSnapToTickEnabled="True"
                     Value="{Binding WindowBackgroundOpacity}"/>
-            </StackPanel>-->
+            </StackPanel>
 
             <!--Window text color-->
-            <!--<StackPanel Grid.Row="6" Grid.Column="0" Style="{StaticResource StyleContainer}">
+            <StackPanel Grid.Row="6" Grid.Column="0" Style="{StaticResource StyleContainer}">
                 <Label Content="Window text color:" />
             </StackPanel>
             <StackPanel Grid.Row="6" Grid.Column="1" Style="{StaticResource StyleContainer}">
@@ -173,7 +162,7 @@
                     Background="{Binding WindowTextSolidColorBrush}"
                     SelectedColor="{Binding WindowTextSolidColorBrush.Color}">
                 </xctk:ColorPicker>
-            </StackPanel>-->
+            </StackPanel>
 
         </Grid>
 
@@ -186,29 +175,27 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Button 
-                    x:Name="ButtonCancel" 
+                    x:Name="buttonCancel" 
                     Grid.Row="0"
                     Grid.Column="0"  
-                    Style="{StaticResource StyleDismissButton}"
+                    Style="{StaticResource StyleLightButton}"
                     Content="Cancel" 
                     VerticalContentAlignment="Center"
                     Margin="20,20,20,20"
-                    Click="ButtonCancel_Click"/>
+                    Click="buttonCancel_Click"/>
                 <Button 
-                    x:Name="ButtonApply" 
+                    x:Name="buttonApply" 
                     Grid.Row="1"
                     Grid.Column="2" 
                     Style="{StaticResource StyleDarkButton}"                    
                     Content="Apply" 
                     VerticalContentAlignment="Center"
                     Margin="20,20,20,20"
-                    Click="ButtonApply_Click"/>
+                    Click="buttonApply_Click"/>
             </Grid>
         </StackPanel>
 
     </Grid>
-
-
 
 
 </Window>

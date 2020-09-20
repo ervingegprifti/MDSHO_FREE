@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.87
+VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDSHO", "MDSHO\MDSHO.csproj", "{EF52A667-C1E1-435E-BC0A-1AED54C79E29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDSHO", "MDSHO\MDSHO.csproj", "{DF2B4C86-2057-4FE5-ACA3-78241FB47F9F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MDSHOSetup", "MDSHOSetup\MDSHOSetup.vdproj", "{4F8EF709-8236-4808-8E0D-CC5403DC4568}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EF52A667-C1E1-435E-BC0A-1AED54C79E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF52A667-C1E1-435E-BC0A-1AED54C79E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF52A667-C1E1-435E-BC0A-1AED54C79E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF52A667-C1E1-435E-BC0A-1AED54C79E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF2B4C86-2057-4FE5-ACA3-78241FB47F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF2B4C86-2057-4FE5-ACA3-78241FB47F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF2B4C86-2057-4FE5-ACA3-78241FB47F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF2B4C86-2057-4FE5-ACA3-78241FB47F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8EF709-8236-4808-8E0D-CC5403DC4568}.Debug|Any CPU.ActiveCfg = Debug
+		{4F8EF709-8236-4808-8E0D-CC5403DC4568}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B410AC86-5FC0-4F99-A1B6-A7E53FB46F0C}
+		SolutionGuid = {84EE2BE8-F5DF-44B2-8EDE-B5FF03A870D4}
 	EndGlobalSection
 EndGlobal

@@ -124,10 +124,22 @@
   <data name="logo_black_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo_black_32x32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logo_black_o_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_black_o_16x16.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_black_o_32xx32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_black_o_32xx32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="logo_white_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo_white_16x16.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo_white_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo_white_32x32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_white_o_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_white_o_16x16.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo_white_o_32xx32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo_white_o_32xx32.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

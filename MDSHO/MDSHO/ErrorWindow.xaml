@@ -4,71 +4,103 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDSHO"
-        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        xmlns:clr="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Error"
-        Width="650"
-        Height="550"
-        Background="{StaticResource SolidColorBrushErrorYellow}"
-        Icon="/MDSHO;component/Assets/Images/warning_s.png"
-        ResizeMode="NoResize"
-        Topmost="True"
-        WindowStartupLocation="CenterScreen">
+        Title="MDSHO error" 
+        Width="400"
+        Height="480" 
+        Icon="/MDSHO;component/Images/warning-s.png" 
+        ResizeMode="NoResize" 
+        Topmost="True" 
+        WindowStartupLocation="CenterScreen"
+        Background="LightGoldenrodYellow">
 
     <Grid>
-
-        <Grid.RowDefinitions>
-            <!-- Label error message -->
-            <RowDefinition Height="Auto"/>
-            <!-- Value error message -->
-            <RowDefinition Height="*"/>
-            <!-- Footer -->
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <!-- Error message -->
-        <Label Grid.Row="0" Grid.Column="0" Margin="37,40,40,0" Foreground="DimGray" Content="Error message"/>
-
-        <!-- Value error message -->
+        <!--Error message-->
+        <Label 
+            Grid.Row="0" Grid.Column="0"
+            Margin="20,20,20,0"
+            Foreground="DimGray" 
+            Content="Error message:"/>
         <TextBox
-            Grid.Row="1" Grid.Column="0" x:Name="TextBoxErrorMessage"
-            Background="{StaticResource SolidColorBrushErrorYellow}"
-            Margin="40,0,40,40"
+            Grid.Row="1" Grid.Column="0"
+            Margin="20,0,20,0"
             BorderBrush="LightGray"
             BorderThickness="1"
+            x:Name="TextBoxErrorMessage"
+            Height="300"
             Padding="5"
             IsReadOnly="True"
-            TextWrapping="NoWrap"
-            HorizontalScrollBarVisibility="Auto"
+            TextWrapping="Wrap"
             VerticalScrollBarVisibility="Auto"
+            Background="WhiteSmoke"
             FontSize="10">
             <TextBox.Resources>
-                <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarHeightKey}">10</sys:Double>
-                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                <clr:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</clr:Double>
             </TextBox.Resources>
-
         </TextBox>
+        <!--<Border
+            Grid.Row="1" Grid.Column="0"
+            Margin="20,0,20,0"
+            BorderBrush="LightGray"
+            BorderThickness="1">
+            <ScrollViewer
+                Height="200"
+                VerticalScrollBarVisibility="Auto">
+                <ScrollViewer.Resources>
+                    <clr:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</clr:Double>
+                </ScrollViewer.Resources>
+                <TextBlock
+                    x:Name="TextBlockErrorMessage"
+                    Padding="5"
+                    TextWrapping="Wrap"
+                    Background="WhiteSmoke"
+                    FontSize="10"/>
+            </ScrollViewer>
+        </Border>-->
 
-        <!-- Footer -->
-        <StackPanel Grid.Row="2" Grid.Column="0" Background="{StaticResource SolidColorBrushMilk}" Orientation="Vertical">
 
-            <Button x:Name="ButtonDismiss"
-                    Click="ButtonDismiss_Click"
-                    Style="{StaticResource StyleDismissButton}"
-                    HorizontalAlignment="Right"
+
+        <StackPanel 
+            Grid.Row="3" Grid.Column="0"
+            Background="#dddddd">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button 
+                    Grid.Row="1"
+                    Grid.Column="2"  
                     VerticalContentAlignment="Center"
-                    Margin="40,30,40,30"/>
-
+                    x:Name="ButtonCancel" 
+                    Click="ButtonCancel_Click"
+                    Style="{StaticResource StyleLightButton}"
+                    Content="Cancel" 
+                    Margin="20,20,20,20"/>                
+            </Grid>            
         </StackPanel>
 
 
-
-
+        
     </Grid>
-
+    
+    
+    
 
 </Window>

@@ -1,74 +1,323 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF2B4C86-2057-4FE5-ACA3-78241FB47F9F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.0.0.4</AssemblyVersion>
-    <FileVersion>1.0.0.4</FileVersion>
-    <ApplicationIcon>Resources\logo_white_32x32.ico</ApplicationIcon>
-    <Authors>Ervin Gegprifti</Authors>
-    <Product>MDSHO</Product>
-    <Copyright>Ervin Gegprifti</Copyright>
-    <Description>Multi Desktop Shortcut Organizer</Description>
+    <RootNamespace>MDSHO</RootNamespace>
+    <AssemblyName>MDSHO</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\logo_black_o_32xx32.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <None Remove="Assets\Fonts\APFont.ttf" />
-    <None Remove="Assets\Images\info_o.png" />
-    <None Remove="Assets\Images\info_s.png" />
-    <None Remove="Assets\Images\logo_black_16x16.ico" />
-    <None Remove="Assets\Images\logo_black_16x16.png" />
-    <None Remove="Assets\Images\logo_black_16x16.svg" />
-    <None Remove="Assets\Images\logo_black_32x32.ico" />
-    <None Remove="Assets\Images\logo_black_32x32.png" />
-    <None Remove="Assets\Images\logo_black_32x32.svg" />
-    <None Remove="Assets\Images\logo_white_16x16.ico" />
-    <None Remove="Assets\Images\logo_white_16x16.png" />
-    <None Remove="Assets\Images\logo_white_16x16.svg" />
-    <None Remove="Assets\Images\logo_white_32x32.ico" />
-    <None Remove="Assets\Images\logo_white_32x32.png" />
-    <None Remove="Assets\Images\logo_white_32x32.svg" />
-    <None Remove="Assets\Images\warning_o.png" />
-    <None Remove="Assets\Images\warning_s.png" />
+    <Reference Include="DeviceId, Version=4.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeviceId.4.2.0\lib\net40\DeviceId.dll</HintPath>
+    </Reference>
+    <Reference Include="GongSolutions.Wpf.DragDrop, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\gong-wpf-dragdrop.1.1.0\lib\net46\GongSolutions.Wpf.DragDrop.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.5.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.5.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
-
   <ItemGroup>
-    <Resource Include="Assets\Fonts\APFont.ttf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\Images\info_o.png" />
-    <Resource Include="Assets\Images\info_s.png" />
-    <Resource Include="Assets\Images\logo_black_16x16.ico" />
-    <Resource Include="Assets\Images\logo_black_16x16.png" />
-    <Resource Include="Assets\Images\logo_black_16x16.svg" />
-    <Resource Include="Assets\Images\logo_black_32x32.ico" />
-    <Resource Include="Assets\Images\logo_black_32x32.png" />
-    <Resource Include="Assets\Images\logo_black_32x32.svg" />
-    <Resource Include="Assets\Images\logo_white_16x16.ico" />
-    <Resource Include="Assets\Images\logo_white_16x16.png" />
-    <Resource Include="Assets\Images\logo_white_16x16.svg" />
-    <Resource Include="Assets\Images\logo_white_32x32.ico" />
-    <Resource Include="Assets\Images\logo_white_32x32.png" />
-    <Resource Include="Assets\Images\logo_white_32x32.svg" />
-    <Resource Include="Assets\Images\warning_o.png" />
-    <Resource Include="Assets\Images\warning_s.png" />
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomThemeWindow.xaml.cs">
+      <DependentUpon>CustomThemeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BackupIO.cs" />
+    <Compile Include="Data\ReadData.cs" />
+    <Compile Include="Data\NewData.cs" />
+    <Compile Include="Data\SaveData.cs" />
+    <Compile Include="Data\ShortcutsData.cs" />
+    <Compile Include="Data\FileIO.cs" />
+    <Compile Include="ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\ContextHelper.cs" />
+    <Compile Include="Helpers\Error.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Helpers\ShortcutUtils.cs" />
+    <Compile Include="Helpers\Themes.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Shortcuts.cs" />
+    <Compile Include="Models\WindowClone.cs" />
+    <Compile Include="Models\WindowItem.cs" />
+    <Compile Include="Native\ShellIcon.cs" />
+    <Compile Include="RestoreWindow.xaml.cs">
+      <DependentUpon>RestoreWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShortcutsWindow.xaml.cs">
+      <DependentUpon>ShortcutsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BackupVM.cs" />
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\Converters\SelectedTreeViewItemBackgroundColorConverter.cs" />
+    <Compile Include="ViewModels\Converters\SelectedTreeViewItemBackgroundConverter.cs" />
+    <Compile Include="ViewModels\ItemVM.cs" />
+    <Compile Include="ViewModels\Commands\RelayCommand.cs" />
+    <Compile Include="ViewModels\ShortcutsVM.cs" />
+    <Compile Include="ViewModels\WindowInfoVM.cs" />
+    <Compile Include="ViewModels\WindowItemVM.cs" />
+    <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomThemeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ErrorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="RestoreWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShortcutsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
-
   <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Resource Include="Fonts\APFont.ttf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo_black_16x16.png" />
+    <Resource Include="Images\logo_black_32x32.png" />
+    <Resource Include="Images\logo_white_16x16.png" />
+    <Resource Include="Images\logo_white_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo_black_o_16x16.png" />
+    <Resource Include="Images\logo_black_o_32x32.png" />
+    <Resource Include="Images\logo_white_o_16x16.png" />
+    <Resource Include="Images\logo_white_o_32xx32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_black_16x16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_black_32x32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_black_o_16x16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_black_o_32xx32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_white_16x16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_white_32x32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_white_o_16x16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo_white_o_32xx32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\brush-o.png" />
+    <Resource Include="Images\brush-s.png" />
+    <Resource Include="Images\circle-o.png" />
+    <Resource Include="Images\circle-s.png" />
+    <Resource Include="Images\circles-o.png" />
+    <Resource Include="Images\circles-s.png" />
+    <Resource Include="Images\clone-o.png" />
+    <Resource Include="Images\clone-s.png" />
+    <Resource Include="Images\clones-o.png" />
+    <Resource Include="Images\clones-s.png" />
+    <Resource Include="Images\conference-call-o.png" />
+    <Resource Include="Images\conference-call-s.png" />
+    <Resource Include="Images\control-panel-o.png" />
+    <Resource Include="Images\control-panel-s.png" />
+    <Resource Include="Images\copy-o.png" />
+    <Resource Include="Images\copy-s.png" />
+    <Resource Include="Images\cut-o.png" />
+    <Resource Include="Images\cut-s.png" />
+    <Resource Include="Images\desktop-o.png" />
+    <Resource Include="Images\desktop-s.png" />
+    <Resource Include="Images\dialpad-o.png" />
+    <Resource Include="Images\dialpad-s.png" />
+    <Resource Include="Images\dock-left-o.png" />
+    <Resource Include="Images\dock-left-s.png" />
+    <Resource Include="Images\dock-right-o.png" />
+    <Resource Include="Images\dock-right-s.png" />
+    <Resource Include="Images\grid-o.png" />
+    <Resource Include="Images\grid-s.png" />
+    <Resource Include="Images\info-o.png" />
+    <Resource Include="Images\info-s.png" />
+    <Resource Include="Images\key-o.png" />
+    <Resource Include="Images\key-s.png" />
+    <Resource Include="Images\mdsho-o.png" />
+    <Resource Include="Images\mdsho-s.png" />
+    <Resource Include="Images\minus-o.png" />
+    <Resource Include="Images\minus-s.png" />
+    <Resource Include="Images\paperclip-angle-o.png" />
+    <Resource Include="Images\paperclip-angle-s.png" />
+    <Resource Include="Images\paperclip-half-o.png" />
+    <Resource Include="Images\paperclip-half-s.png" />
+    <Resource Include="Images\paperclip-o.png" />
+    <Resource Include="Images\paperclip-s.png" />
+    <Resource Include="Images\paste-o.png" />
+    <Resource Include="Images\paste-s.png" />
+    <Resource Include="Images\plus-o.png" />
+    <Resource Include="Images\plus-s.png" />
+    <Resource Include="Images\recycle-bin-o.png" />
+    <Resource Include="Images\recycle-bin-s.png" />
+    <Resource Include="Images\rename-o.png" />
+    <Resource Include="Images\rename-s.png" />
+    <Resource Include="Images\round-table-meeting-o.png" />
+    <Resource Include="Images\round-table-meeting-s.png" />
+    <Resource Include="Images\send-o.png" />
+    <Resource Include="Images\send-s.png" />
+    <Resource Include="Images\settings-o.png" />
+    <Resource Include="Images\settings-s.png" />
+    <Resource Include="Images\sort-asc-o.png" />
+    <Resource Include="Images\sort-asc-s.png" />
+    <Resource Include="Images\sort-desc-o.png" />
+    <Resource Include="Images\sort-desc-s.png" />
+    <Resource Include="Images\split-in-four-o.png" />
+    <Resource Include="Images\split-in-four-s.png" />
+    <Resource Include="Images\split-in-two-o.png" />
+    <Resource Include="Images\split-in-two-s.png" />
+    <Resource Include="Images\theme-o.png" />
+    <Resource Include="Images\theme-s.png" />
+    <Resource Include="Images\times-o.png" />
+    <Resource Include="Images\times-s.png" />
+    <Resource Include="Images\warning-o.png" />
+    <Resource Include="Images\warning-s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\database-in-o.png" />
+    <Resource Include="Images\database-in-s.png" />
+    <Resource Include="Images\database-o.png" />
+    <Resource Include="Images\database-out-o.png" />
+    <Resource Include="Images\database-out-s.png" />
+    <Resource Include="Images\database-s.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

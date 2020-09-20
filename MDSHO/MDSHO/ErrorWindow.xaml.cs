@@ -1,7 +1,17 @@
 ﻿using MDSHO.Helpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace MDSHO
 {
@@ -10,18 +20,18 @@ namespace MDSHO
     /// </summary>
     public partial class ErrorWindow : Window
     {
-        public ErrorWindow(Exception ex, string title = null)
+        public ErrorWindow(Exception ex)
         {
             InitializeComponent();
 
             try
             {
-                Title = title;
-                StringBuilder errorMessage = new StringBuilder();
-                errorMessage.AppendLine($"Unhandled exception in {Helper.GetApplicationName()} version {Helper.GetApplicationVersion()}");
-                errorMessage.AppendLine(ex.Message);
-                errorMessage.AppendLine(ex.StackTrace);
-                TextBoxErrorMessage.Text = errorMessage.ToString();
+                string errorMessage = "";
+                errorMessage += ex.Message;
+                errorMessage += Environment.NewLine + Environment.NewLine;
+                errorMessage += ex.StackTrace;
+                TextBoxErrorMessage.Text = errorMessage;
+                // TextBlockErrorMessage.Text = errorMessage;
             }
             catch (Exception inex)
             {
@@ -29,9 +39,27 @@ namespace MDSHO
             }
         }
 
-        private void ButtonDismiss_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                Error.ShowDialog(ex);
+            }
         }
     }
 }
+
+/*
+try
+{
+
+}
+catch (Exception ex)
+{
+    Error.ShowDialog(ex, this);
+}
+*/
